@@ -1,0 +1,143 @@
+{
+  "chosen": {
+    "vocab_size": 16000,
+    "n_tokens": 2860213,
+    "chars_per_token": 4.319321323272078,
+    "bytes_per_token": 11.5188998162025,
+    "tokens_per_word": 1.8104160798549243,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.0031529120383691706,
+    "vocab_used_frac": 0.989625,
+    "dead_vocab_frac": 0.010375000000000023,
+    "algorithm": "unigram",
+    "phase2": {
+      "embedding": 6144000,
+      "transformer": 10616832,
+      "total": 16760832,
+      "embedding_share": 0.36656891495601174
+    }
+  },
+  "model": "/content/drive/MyDrive/lma_phase1/telugu/tokenizer/tel.model",
+  "final_metrics": {
+    "vocab_size": 16000,
+    "n_tokens": 2860213,
+    "chars_per_token": 4.319321323272078,
+    "bytes_per_token": 11.5188998162025,
+    "tokens_per_word": 1.8104160798549243,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.0031529120383691706,
+    "vocab_used_frac": 0.989625,
+    "dead_vocab_frac": 0.010375000000000023
+  },
+  "examples": [
+    {
+      "word": "ప్రభుత్వం",
+      "pieces": [
+        "▁ప్రభుత్వం"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "విద్యార్థి",
+      "pieces": [
+        "▁విద్యార్థి"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "హైదరాబాద్",
+      "pieces": [
+        "▁హైదరాబాద్"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "చేస్తున్నారు",
+      "pieces": [
+        "▁చేస్తున్నారు"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "కంప్యూటర్",
+      "pieces": [
+        "▁కంప్యూటర్"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "2026",
+      "pieces": [
+        "▁",
+        "2",
+        "0",
+        "2",
+        "6"
+      ],
+      "n_pieces": 5
+    },
+    {
+      "word": "తెలంగాణ",
+      "pieces": [
+        "▁తెలంగాణ"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "పుస్తకాలు",
+      "pieces": [
+        "▁పుస్తకాలు"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "అభివృద్ధి",
+      "pieces": [
+        "▁అభివృద్ధి"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "వాళ్ళు",
+      "pieces": [
+        "▁వాళ్ళు"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "సినిమా",
+      "pieces": [
+        "▁సినిమా"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "రాష్ట్రంలోని",
+      "pieces": [
+        "▁రాష్ట్రంలోని"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "శాస్త్రవేత్తలు",
+      "pieces": [
+        "▁శాస్త్రవేత్తలు"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "మంచిది",
+      "pieces": [
+        "▁మంచిది"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "అంతర్జాతీయ",
+      "pieces": [
+        "▁అంతర్జాతీయ"
+      ],
+      "n_pieces": 1
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "lang": "nep",
+  "run": "nep_nopos",
+  "step": 6000,
+  "seq_len": 48,
+  "max_entropy": 2.930706739425659,
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "entropy": 1.5175164937973022,
+      "mean_distance": 5.490699291229248
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "entropy": 2.081212043762207,
+      "mean_distance": 7.747188568115234
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "entropy": 2.2080307006835938,
+      "mean_distance": 8.304845809936523
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "entropy": 2.618293523788452,
+      "mean_distance": 10.334389686584473
+    },
+    {
+      "layer": 0,
+      "head": 4,
+      "entropy": 1.7725814580917358,
+      "mean_distance": 6.31461238861084
+    },
+    {
+      "layer": 0,
+      "head": 5,
+      "entropy": 1.981210470199585,
+      "mean_distance": 7.270342826843262
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "entropy": 2.6236839294433594,
+      "mean_distance": 11.660751342773438
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "entropy": 2.260087013244629,
+      "mean_distance": 9.754073143005371
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "entropy": 2.8631458282470703,
+      "mean_distance": 11.528951644897461
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "entropy": 2.669464111328125,
+      "mean_distance": 11.219108581542969
+    },
+    {
+      "layer": 1,
+      "head": 4,
+      "entropy": 2.651742458343506,
+      "mean_distance": 12.008082389831543
+    },
+    {
+      "layer": 1,
+      "head": 5,
+      "entropy": 2.5852739810943604,
+      "mean_distance": 11.527979850769043
+    },
+    {
+      "layer": 2,
+      "head": 0,
+      "entropy": 1.9190881252288818,
+      "mean_distance": 10.724308013916016
+    },
+    {
+      "layer": 2,
+      "head": 1,
+      "entropy": 2.7008886337280273,
+      "mean_distance": 10.832672119140625
+    },
+    {
+      "layer": 2,
+      "head": 2,
+      "entropy": 2.737119674682617,
+      "mean_distance": 10.900137901306152
+    },
+    {
+      "layer": 2,
+      "head": 3,
+      "entropy": 2.6256940364837646,
+      "mean_distance": 6.748449325561523
+    },
+    {
+      "layer": 2,
+      "head": 4,
+      "entropy": 2.6067512035369873,
+      "mean_distance": 10.287055015563965
+    },
+    {
+      "layer": 2,
+      "head": 5,
+      "entropy": 2.849949598312378,
+      "mean_distance": 11.430410385131836
+    },
+    {
+      "layer": 3,
+      "head": 0,
+      "entropy": 1.8456319570541382,
+      "mean_distance": 2.908008098602295
+    },
+    {
+      "layer": 3,
+      "head": 1,
+      "entropy": 2.1396243572235107,
+      "mean_distance": 3.90775203704834
+    },
+    {
+      "layer": 3,
+      "head": 2,
+      "entropy": 2.4642484188079834,
+      "mean_distance": 6.376557350158691
+    },
+    {
+      "layer": 3,
+      "head": 3,
+      "entropy": 2.2859272956848145,
+      "mean_distance": 6.149457931518555
+    },
+    {
+      "layer": 3,
+      "head": 4,
+      "entropy": 2.4387454986572266,
+      "mean_distance": 6.599782466888428
+    },
+    {
+      "layer": 3,
+      "head": 5,
+      "entropy": 2.1752545833587646,
+      "mean_distance": 6.671060562133789
+    },
+    {
+      "layer": 4,
+      "head": 0,
+      "entropy": 2.216790199279785,
+      "mean_distance": 6.892521858215332
+    },
+    {
+      "layer": 4,
+      "head": 1,
+      "entropy": 2.518235206604004,
+      "mean_distance": 10.808557510375977
+    },
+    {
+      "layer": 4,
+      "head": 2,
+      "entropy": 0.7193303108215332,
+      "mean_distance": 1.5321323871612549
+    },
+    {
+      "layer": 4,
+      "head": 3,
+      "entropy": 1.7274537086486816,
+      "mean_distance": 2.910287857055664
+    },
+    {
+      "layer": 4,
+      "head": 4,
+      "entropy": 2.054358959197998,
+      "mean_distance": 6.659918785095215
+    },
+    {
+      "layer": 4,
+      "head": 5,
+      "entropy": 1.470604658126831,
+      "mean_distance": 3.7692341804504395
+    },
+    {
+      "layer": 5,
+      "head": 0,
+      "entropy": 1.7799711227416992,
+      "mean_distance": 5.085668563842773
+    },
+    {
+      "layer": 5,
+      "head": 1,
+      "entropy": 2.0209643840789795,
+      "mean_distance": 7.316771984100342
+    },
+    {
+      "layer": 5,
+      "head": 2,
+      "entropy": 1.654889464378357,
+      "mean_distance": 3.951284885406494
+    },
+    {
+      "layer": 5,
+      "head": 3,
+      "entropy": 1.4702318906784058,
+      "mean_distance": 14.176105499267578
+    },
+    {
+      "layer": 5,
+      "head": 4,
+      "entropy": 2.013038396835327,
+      "mean_distance": 12.266822814941406
+    },
+    {
+      "layer": 5,
+      "head": 5,
+      "entropy": 2.1291534900665283,
+      "mean_distance": 9.662495613098145
+    },
+    {
+      "layer": 6,
+      "head": 0,
+      "entropy": 2.001527786254883,
+      "mean_distance": 13.340591430664062
+    },
+    {
+      "layer": 6,
+      "head": 1,
+      "entropy": 2.0522220134735107,
+      "mean_distance": 9.261041641235352
+    },
+    {
+      "layer": 6,
+      "head": 2,
+      "entropy": 2.0553793907165527,
+      "mean_distance": 12.315646171569824
+    },
+    {
+      "layer": 6,
+      "head": 3,
+      "entropy": 2.1265869140625,
+      "mean_distance": 10.708941459655762
+    },
+    {
+      "layer": 6,
+      "head": 4,
+      "entropy": 2.0616490840911865,
+      "mean_distance": 7.661521911621094
+    },
+    {
+      "layer": 6,
+      "head": 5,
+      "entropy": 2.0766849517822266,
+      "mean_distance": 9.987249374389648
+    }
+  ],
+  "layer_means": [
+    {
+      "layer": 0,
+      "entropy": 2.029807448387146,
+      "mean_distance": 7.57701309521993
+    },
+    {
+      "layer": 1,
+      "entropy": 2.608899553616842,
+      "mean_distance": 11.28315782546997
+    },
+    {
+      "layer": 2,
+      "entropy": 2.573248545328776,
+      "mean_distance": 10.153838793436686
+    },
+    {
+      "layer": 3,
+      "entropy": 2.2249053517977395,
+      "mean_distance": 5.435436407725017
+    },
+    {
+      "layer": 4,
+      "entropy": 1.7844621737798054,
+      "mean_distance": 5.428775429725647
+    },
+    {
+      "layer": 5,
+      "entropy": 1.8447081247965496,
+      "mean_distance": 8.743191560109457
+    },
+    {
+      "layer": 6,
+      "entropy": 2.0623416900634766,
+      "mean_distance": 10.545831998189291
+    }
+  ]
+}

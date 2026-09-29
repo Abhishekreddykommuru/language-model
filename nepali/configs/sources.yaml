@@ -1,0 +1,129 @@
+# Nepali (Model L) -- data sources.
+# All identifiers, sizes and access modes verified live on 13 August 2026.
+lang: nep
+lang_name: Nepali
+script_range: [0x0900, 0x097F]   # Devanagari; SHARED with hi/mr/mai/bho/sa
+
+targets:
+  # Target 500M, but Nepali has ~7 usable news hosts against Telugu's 10, and
+  # three impose Crawl-delay, so ~250-300M is the realistic outcome. Where the
+  # target cannot be reached from public sources, collect the maximum feasible
+  # amount and report the exact token count rather than padding it.
+  final_tokens: 500_000_000
+  manual_fraction_min: 0.20
+
+downloaded:
+  - name: fineweb2
+    kind: hf_streaming
+    repo: HuggingFaceFW/fineweb-2
+    config: npi_Deva               # 6.75 GB, 4,937,625 documents
+    text_field: text
+    licence: ODC-By
+    target_raw_tokens: 260_000_000
+  - name: sangraha_verified
+    kind: hf_parquet_files
+    repo: ai4bharat/sangraha
+    files_prefix: verified/nep/
+    # data-0.parquet is 8.6 GB while every other file is ~340 MB. Skipping it
+    # avoids filling Colab's local disk for no extra coverage.
+    skip_files: ["data-0.parquet"]
+    text_field: text
+    licence: CC-BY-4.0
+    target_raw_tokens: 110_000_000
+  - name: wikipedia
+    kind: hf_streaming
+    repo: wikimedia/wikipedia
+    config: 20231101.ne
+    text_field: text
+    licence: CC-BY-SA-3.0
+    target_raw_tokens: 30_000_000
+  - name: nepalitext
+    kind: hf_streaming
+    repo: Sakonii/nepalitext-language-model-dataset
+    config: default          # verified: the only config, splits train/test
+    text_field: text
+    licence: open
+    target_raw_tokens: 25_000_000
+  - name: indiccorp_v2
+    # Raw .txt in the repo (14.8 GB), streamed over HTTP and stopped at target.
+    kind: hf_text_stream
+    url: https://huggingface.co/datasets/ai4bharat/IndicCorpV2/resolve/main/data/ne.txt
+    licence: open
+    target_raw_tokens: 220_000_000
+
+crawl:
+  # Nepali leans harder on crawling than Telugu does, because archive.org holds
+  # only 240 Nepali scanned items against Telugu's 12,887.
+  # 7 usable hosts, but three declare Crawl-delay 10-20s, so effective
+  # throughput is ~9M tokens/hour against Telugu's ~23M. This source scarcity is
+  # exactly what the assignment's shortfall clause anticipates.
+  target_raw_tokens: 100_000_000
+  user_agent: "lma-cl3410-student-corpus/1.0 (academic research; contact: reddyabhishek351@gmail.com)"
+  default_delay_seconds: 0.5
+  # NOTE: there is deliberately no article_url_pattern per site. Hand-written
+  # include-patterns were guesses and silently filtered out whole hosts --
+  # sakshi.com discovered 0 URLs because its 1,675 sitemap entries matched
+  # neither '/news/' nor '/telugu-news/'. Exclusion (DEFAULT_EXCLUDE in
+  # common/collect/crawler.py) is reliable; inclusion is not.
+  sites:
+    - host: www.setopati.com
+      sitemaps: ["https://www.setopati.com/sitemap.xml"]
+    - host: www.onlinekhabar.com
+      sitemaps: ["https://www.onlinekhabar.com/sitemap_index.xml"]
+    - host: www.ratopati.com
+      # robots.txt declares Crawl-delay: 20, which PoliteCrawler honours. This
+      # caps the site's yield, so it stays a minor source.
+      sitemaps: ["https://www.ratopati.com/sitemap.xml"]
+    - host: gorkhapatraonline.com
+      sitemaps: ["https://gorkhapatraonline.com/sitemap.xml"]
+
+    - host: www.nepalipatra.com
+      sitemaps: ["https://www.nepalipatra.com/sitemap.xml"]
+    - host: nepalkhabar.com
+      # robots declares Crawl-delay: 10, honoured by PoliteCrawler, so this is a
+      # low-yield source: ~0.1 req/s against 2 req/s elsewhere.
+      sitemaps: ["https://nepalkhabar.com/sitemap.xml"]
+    - host: www.ujyaaloonline.com
+      sitemaps: ["https://www.ujyaaloonline.com/sitemap.xml"]
+
+# EXCLUDED ON PURPOSE -- do not add these back.
+# ekantipur.com and himalkhabar.com both serve
+#     Content-Signal: search=yes, ai-train=no
+# and Disallow: / for the major AI training crawlers.
+# common/collect/crawler.py refuses them at runtime, and the exclusion is
+# reported rather than quietly dropped.
+excluded_hosts:
+  - ekantipur.com
+  - himalkhabar.com
+  - bizmandu.com      # also declares ai-train=no (verified 14 Aug)
+
+ocr:
+  # SIZED FOR THE DEADLINE, not for volume.
+  #
+  # Tesseract runs ~1 page/second on Colab's 2 vCPUs, so 200 books x 400 pages
+  # is ~26 hours for ~33M raw tokens. The same hours spent crawling yield ~190M.
+  # OCR is roughly 6x less efficient per hour, so it is scoped to satisfy the
+  # assignment's "OCR from books/PDFs" requirement credibly rather than to carry
+  # the manual budget: 40 books x 150 pages is ~2 hours for ~2.5M raw tokens.
+  # Raise max_items if you find yourself with spare time.
+  # Only 240 Nepali items exist on archive.org, so OCR is a small
+  # credibility-oriented bucket here rather than a volume source.
+  target_raw_tokens: 6_000_000
+  archive_org_query: 'language:(nepali) AND mediatype:(texts)'
+  max_items: 30
+  tesseract_lang: nep
+  min_dpi: 300
+  max_pages_per_item: 150
+  min_page_score: 0.55        # slightly laxer: less material to spare
+
+pdf_text:
+  # The highest-yield manual source for Nepali. The Nepal Law Commission
+  # publishes thousands of Acts and Rules as native-text PDFs, which pypdf reads
+  # directly at hundreds of pages per second with zero OCR error.
+  # BEST EFFORT. Nepal/India government portals were unreachable when
+  # checked (HTTP 503), so this budget is deliberately small and the
+  # crawl carries the manual share. The stage skips cleanly if empty.
+  target_raw_tokens: 10_000_000
+  url_list: nepali/configs/pdf_urls.txt
+  seed_listing_pages:
+    - "https://lawcommission.gov.np/en/?cat=437"

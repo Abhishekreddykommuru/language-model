@@ -1,0 +1,176 @@
+{
+  "language": "nepali",
+  "lang_code": "nep",
+  "seed": 20260909,
+  "answer_marker": "उत्तर:",
+  "templates": [
+    {
+      "id": "two_way_value",
+      "description": "two entities with stated values, ask which is more or less"
+    },
+    {
+      "id": "three_way_value",
+      "description": "three entities with stated values, ask for the maximum or minimum"
+    },
+    {
+      "id": "transitive_3",
+      "description": "two chained inequalities over three entities, no numbers given"
+    },
+    {
+      "id": "equality",
+      "description": "two entities, equal or unequal values, answer yes or no"
+    },
+    {
+      "id": "transitive_4",
+      "description": "three chained inequalities over four entities; held out of training"
+    }
+  ],
+  "attributes": [
+    {
+      "key": "height",
+      "pool": "people",
+      "range": [
+        140,
+        195
+      ]
+    },
+    {
+      "key": "age",
+      "pool": "people",
+      "range": [
+        5,
+        80
+      ]
+    },
+    {
+      "key": "weight",
+      "pool": "people",
+      "range": [
+        30,
+        95
+      ]
+    },
+    {
+      "key": "price",
+      "pool": "objects",
+      "range": [
+        20,
+        4000
+      ]
+    }
+  ],
+  "splits": {
+    "train": {
+      "examples": 22000,
+      "by_template": {
+        "equality": 4000,
+        "three_way_value": 6000,
+        "transitive_3": 6000,
+        "two_way_value": 6000
+      },
+      "by_attribute": {
+        "age": 5637,
+        "height": 5732,
+        "price": 4871,
+        "weight": 5760
+      },
+      "by_hops": {
+        "1": 10000,
+        "2": 12000
+      },
+      "distinct_answers": 36,
+      "majority_answer_share": 0.09172727272727273,
+      "mean_chars": 104.09322727272728,
+      "max_chars": 141
+    },
+    "val": {
+      "examples": 1500,
+      "by_template": {
+        "equality": 300,
+        "three_way_value": 400,
+        "transitive_3": 400,
+        "two_way_value": 400
+      },
+      "by_attribute": {
+        "age": 450,
+        "height": 477,
+        "price": 167,
+        "weight": 406
+      },
+      "by_hops": {
+        "1": 700,
+        "2": 800
+      },
+      "distinct_answers": 10,
+      "majority_answer_share": 0.13466666666666666,
+      "mean_chars": 103.31,
+      "max_chars": 137
+    },
+    "test": {
+      "examples": 3600,
+      "by_template": {
+        "equality": 600,
+        "three_way_value": 800,
+        "transitive_3": 800,
+        "transitive_4": 600,
+        "two_way_value": 800
+      },
+      "by_attribute": {
+        "age": 958,
+        "height": 923,
+        "price": 781,
+        "weight": 938
+      },
+      "by_hops": {
+        "1": 1400,
+        "2": 1600,
+        "3": 600
+      },
+      "distinct_answers": 14,
+      "majority_answer_share": 0.09055555555555556,
+      "mean_chars": 113.38222222222223,
+      "max_chars": 167
+    }
+  },
+  "leakage": {
+    "entity_overlap": {
+      "train_val": [],
+      "train_test": [],
+      "val_test": []
+    },
+    "prompt_overlap_counts": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "families_per_split": {
+      "train": [
+        "equality",
+        "three_way_value",
+        "transitive_3",
+        "two_way_value"
+      ],
+      "val": [
+        "equality",
+        "three_way_value",
+        "transitive_3",
+        "two_way_value"
+      ],
+      "test": [
+        "equality",
+        "three_way_value",
+        "transitive_3",
+        "transitive_4",
+        "two_way_value"
+      ]
+    },
+    "held_out_families": [
+      "transitive_4"
+    ],
+    "entities_per_split": {
+      "train": 34,
+      "val": 8,
+      "test": 12
+    }
+  }
+}

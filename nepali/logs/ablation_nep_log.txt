@@ -1,0 +1,488 @@
+
+Bonus ablation, nep without positional embeddings
+-------------------------------------------------
+  config                     nepali/configs/model_nopos.yaml
+  checkpoints                /kaggle/working/lma_phase1/nepali/7_checkpoints/nep_nopos_*.pt
+
+20  [nep nopos]
+---------------
+
+$ /usr/bin/python3 scripts/20_train.py --lang nep --variant nopos --work /kaggle/working/lma_phase1 --model-config nepali/configs/model_nopos.yaml --max-steps 6000
+
+Pretraining nep_nopos
+---------------------
+  device                     cuda (Tesla T4)
+  precision                  float16
+  parameters                 24,710,016
+  positional embeddings      none (ablation)
+  vocabulary                 32,000
+  training tokens            497,000,869
+  validation tokens          7,210,223
+  tokens per step            65,536
+  steps                      6,000
+  total tokens to see        393.2M
+  checkpoints                /kaggle/working/lma_phase1/nepali/7_checkpoints
+  resumed                    no, fresh start
+  step     20/6000  loss 10.1181  lr 1.20e-05  grad 1.28  1.3M tokens  0.6 min
+  step     40/6000  loss 9.8897  lr 2.40e-05  grad 0.92  2.6M tokens  1.2 min
+  step     60/6000  loss 9.6119  lr 3.60e-05  grad 0.85  3.9M tokens  1.8 min
+  step     80/6000  loss 9.3003  lr 4.80e-05  grad 0.81  5.2M tokens  2.4 min
+  step    100/6000  loss 8.9239  lr 6.00e-05  grad 0.79  6.6M tokens  2.9 min
+  step    120/6000  loss 8.6270  lr 7.20e-05  grad 0.71  7.9M tokens  3.5 min
+  step    140/6000  loss 8.3512  lr 8.40e-05  grad 0.62  9.2M tokens  4.1 min
+  step    160/6000  loss 8.2042  lr 9.60e-05  grad 0.53  10.5M tokens  4.7 min
+  step    180/6000  loss 7.9978  lr 1.08e-04  grad 0.59  11.8M tokens  5.3 min
+  step    200/6000  loss 7.8858  lr 1.20e-04  grad 0.63  13.1M tokens  5.8 min
+  step    220/6000  loss 7.7490  lr 1.32e-04  grad 0.59  14.4M tokens  6.4 min
+  step    240/6000  loss 7.6066  lr 1.44e-04  grad 0.57  15.7M tokens  7.0 min
+  step    260/6000  loss 7.4426  lr 1.56e-04  grad 0.63  17.0M tokens  7.6 min
+  step    280/6000  loss 7.3985  lr 1.68e-04  grad 0.99  18.4M tokens  8.2 min
+  step    300/6000  loss 7.2650  lr 1.80e-04  grad 0.71  19.7M tokens  8.7 min
+  step    320/6000  loss 7.1086  lr 1.92e-04  grad 0.70  21.0M tokens  9.3 min
+  step    340/6000  loss 7.1079  lr 2.04e-04  grad 0.67  22.3M tokens  9.9 min
+  step    360/6000  loss 6.9959  lr 2.16e-04  grad 0.72  23.6M tokens  10.5 min
+  step    380/6000  loss 6.9005  lr 2.28e-04  grad 1.07  24.9M tokens  11.1 min
+  step    400/6000  loss 6.8291  lr 2.40e-04  grad 0.86  26.2M tokens  11.6 min
+  step    420/6000  loss 6.7606  lr 2.52e-04  grad 0.84  27.5M tokens  12.2 min
+  step    440/6000  loss 6.7488  lr 2.64e-04  grad 0.93  28.8M tokens  12.8 min
+  step    460/6000  loss 6.6428  lr 2.76e-04  grad 0.77  30.1M tokens  13.4 min
+  step    480/6000  loss 6.6286  lr 2.88e-04  grad 0.94  31.5M tokens  14.0 min
+  step    500/6000  loss 6.5406  lr 3.00e-04  grad 1.20  32.8M tokens  14.6 min
+  step    500  val loss 6.6005  val ppl 735.46
+         new best, checkpoint written
+  step    520/6000  loss 6.5051  lr 3.00e-04  grad 1.12  34.1M tokens  15.3 min
+  step    540/6000  loss 6.5175  lr 3.00e-04  grad 0.96  35.4M tokens  15.9 min
+  step    560/6000  loss 6.4289  lr 3.00e-04  grad 0.82  36.7M tokens  16.5 min
+  step    580/6000  loss 6.3670  lr 3.00e-04  grad 1.33  38.0M tokens  17.0 min
+  step    600/6000  loss 6.2992  lr 3.00e-04  grad 0.78  39.3M tokens  17.6 min
+  step    620/6000  loss 6.2152  lr 3.00e-04  grad 0.78  40.6M tokens  18.2 min
+  step    640/6000  loss 6.2168  lr 3.00e-04  grad 0.76  41.9M tokens  18.8 min
+  step    660/6000  loss 6.1958  lr 2.99e-04  grad 0.94  43.3M tokens  19.4 min
+  step    680/6000  loss 6.1365  lr 2.99e-04  grad 0.89  44.6M tokens  20.0 min
+  step    700/6000  loss 6.0613  lr 2.99e-04  grad 1.06  45.9M tokens  20.5 min
+  step    720/6000  loss 5.9921  lr 2.99e-04  grad 0.93  47.2M tokens  21.1 min
+  step    740/6000  loss 5.9939  lr 2.99e-04  grad 0.97  48.5M tokens  21.7 min
+  step    760/6000  loss 5.9688  lr 2.99e-04  grad 0.81  49.8M tokens  22.3 min
+  step    780/6000  loss 5.9738  lr 2.98e-04  grad 0.97  51.1M tokens  22.8 min
+  step    800/6000  loss 5.9121  lr 2.98e-04  grad 1.00  52.4M tokens  23.4 min
+  step    820/6000  loss 5.8409  lr 2.98e-04  grad 1.31  53.7M tokens  24.0 min
+  step    840/6000  loss 5.8452  lr 2.97e-04  grad 0.92  55.1M tokens  24.6 min
+  step    860/6000  loss 5.8561  lr 2.97e-04  grad 1.11  56.4M tokens  25.2 min
+  step    880/6000  loss 5.8137  lr 2.97e-04  grad 1.09  57.7M tokens  25.7 min
+  step    900/6000  loss 5.7843  lr 2.97e-04  grad 1.04  59.0M tokens  26.3 min
+  step    920/6000  loss 5.8089  lr 2.96e-04  grad 0.94  60.3M tokens  26.9 min
+  step    940/6000  loss 5.7999  lr 2.96e-04  grad 1.09  61.6M tokens  27.5 min
+  step    960/6000  loss 5.7286  lr 2.95e-04  grad 1.15  62.9M tokens  28.0 min
+  step    980/6000  loss 5.6961  lr 2.95e-04  grad 1.15  64.2M tokens  28.6 min
+  step   1000/6000  loss 5.7559  lr 2.95e-04  grad 0.91  65.5M tokens  29.2 min
+  step   1000  val loss 5.6986  val ppl 298.46
+         new best, checkpoint written
+  step   1020/6000  loss 5.6418  lr 2.94e-04  grad 1.26  66.8M tokens  30.0 min
+  step   1040/6000  loss 5.6605  lr 2.94e-04  grad 1.15  68.2M tokens  30.5 min
+  step   1060/6000  loss 5.6310  lr 2.93e-04  grad 1.02  69.5M tokens  31.1 min
+  step   1080/6000  loss 5.5590  lr 2.93e-04  grad 1.13  70.8M tokens  31.7 min
+  step   1100/6000  loss 5.6242  lr 2.92e-04  grad 0.93  72.1M tokens  32.3 min
+  step   1120/6000  loss 5.5324  lr 2.92e-04  grad 0.89  73.4M tokens  32.8 min
+  step   1140/6000  loss 5.6051  lr 2.91e-04  grad 0.94  74.7M tokens  33.4 min
+  step   1160/6000  loss 5.5582  lr 2.91e-04  grad 0.91  76.0M tokens  34.0 min
+  step   1180/6000  loss 5.5470  lr 2.90e-04  grad 1.12  77.3M tokens  34.6 min
+  step   1200/6000  loss 5.4809  lr 2.89e-04  grad 1.12  78.6M tokens  35.2 min
+  step   1220/6000  loss 5.3838  lr 2.89e-04  grad 0.94  80.0M tokens  35.7 min
+  step   1240/6000  loss 5.4177  lr 2.88e-04  grad 0.86  81.3M tokens  36.3 min
+  step   1260/6000  loss 5.5215  lr 2.88e-04  grad 0.94  82.6M tokens  36.9 min
+  step   1280/6000  loss 5.4652  lr 2.87e-04  grad 0.84  83.9M tokens  37.5 min
+  step   1300/6000  loss 5.4761  lr 2.86e-04  grad 1.02  85.2M tokens  38.0 min
+  step   1320/6000  loss 5.4196  lr 2.85e-04  grad 1.34  86.5M tokens  38.6 min
+  step   1340/6000  loss 5.3944  lr 2.85e-04  grad 1.25  87.8M tokens  39.2 min
+  step   1360/6000  loss 5.3373  lr 2.84e-04  grad 1.17  89.1M tokens  39.8 min
+  step   1380/6000  loss 5.3952  lr 2.83e-04  grad 0.94  90.4M tokens  40.3 min
+  step   1400/6000  loss 5.3257  lr 2.83e-04  grad 0.86  91.8M tokens  40.9 min
+  step   1420/6000  loss 5.4054  lr 2.82e-04  grad 0.83  93.1M tokens  41.5 min
+  step   1440/6000  loss 5.3637  lr 2.81e-04  grad 0.86  94.4M tokens  42.1 min
+  step   1460/6000  loss 5.3154  lr 2.80e-04  grad 1.05  95.7M tokens  42.6 min
+  step   1480/6000  loss 5.3209  lr 2.79e-04  grad 1.44  97.0M tokens  43.2 min
+  step   1500/6000  loss 5.3228  lr 2.79e-04  grad 0.85  98.3M tokens  43.8 min
+  step   1500  val loss 5.3053  val ppl 201.40
+         new best, checkpoint written
+  step   1520/6000  loss 5.3311  lr 2.78e-04  grad 1.35  99.6M tokens  44.5 min
+  step   1540/6000  loss 5.2673  lr 2.77e-04  grad 1.21  100.9M tokens  45.1 min
+  step   1560/6000  loss 5.2724  lr 2.76e-04  grad 0.94  102.2M tokens  45.7 min
+  step   1580/6000  loss 5.2766  lr 2.75e-04  grad 1.07  103.5M tokens  46.3 min
+  step   1600/6000  loss 5.2180  lr 2.74e-04  grad 0.86  104.9M tokens  46.8 min
+  step   1620/6000  loss 5.2502  lr 2.73e-04  grad 0.93  106.2M tokens  47.4 min
+  step   1640/6000  loss 5.3013  lr 2.72e-04  grad 1.07  107.5M tokens  48.0 min
+  step   1660/6000  loss 5.3158  lr 2.71e-04  grad 0.99  108.8M tokens  48.6 min
+  step   1680/6000  loss 5.1828  lr 2.71e-04  grad 0.96  110.1M tokens  49.1 min
+  step   1700/6000  loss 5.1921  lr 2.70e-04  grad 0.88  111.4M tokens  49.7 min
+  step   1720/6000  loss 5.1601  lr 2.69e-04  grad 0.86  112.7M tokens  50.3 min
+  step   1740/6000  loss 5.1674  lr 2.68e-04  grad 1.11  114.0M tokens  50.9 min
+  step   1760/6000  loss 5.1914  lr 2.67e-04  grad 0.98  115.3M tokens  51.4 min
+  step   1780/6000  loss 5.1342  lr 2.66e-04  grad 0.82  116.7M tokens  52.0 min
+  step   1800/6000  loss 5.2036  lr 2.65e-04  grad 0.92  118.0M tokens  52.6 min
+  step   1820/6000  loss 5.2027  lr 2.63e-04  grad 0.88  119.3M tokens  53.2 min
+  step   1840/6000  loss 5.2074  lr 2.62e-04  grad 1.25  120.6M tokens  53.7 min
+  step   1860/6000  loss 5.1521  lr 2.61e-04  grad 0.83  121.9M tokens  54.3 min
+  step   1880/6000  loss 5.1136  lr 2.60e-04  grad 1.19  123.2M tokens  54.9 min
+  step   1900/6000  loss 5.0845  lr 2.59e-04  grad 0.84  124.5M tokens  55.5 min
+  step   1920/6000  loss 5.1831  lr 2.58e-04  grad 1.12  125.8M tokens  56.0 min
+  step   1940/6000  loss 5.0786  lr 2.57e-04  grad 0.85  127.1M tokens  56.6 min
+  step   1960/6000  loss 5.0908  lr 2.56e-04  grad 0.78  128.5M tokens  57.2 min
+  step   1980/6000  loss 5.0777  lr 2.55e-04  grad 0.83  129.8M tokens  57.8 min
+  step   2000/6000  loss 5.1443  lr 2.53e-04  grad 1.14  131.1M tokens  58.3 min
+  step   2000  val loss 5.0767  val ppl 160.25
+         new best, checkpoint written
+  step   2020/6000  loss 5.0628  lr 2.52e-04  grad 1.12  132.4M tokens  59.1 min
+  step   2040/6000  loss 5.0796  lr 2.51e-04  grad 0.84  133.7M tokens  59.7 min
+  step   2060/6000  loss 5.0264  lr 2.50e-04  grad 1.01  135.0M tokens  60.3 min
+  step   2080/6000  loss 5.0983  lr 2.49e-04  grad 0.80  136.3M tokens  60.8 min
+  step   2100/6000  loss 5.0341  lr 2.47e-04  grad 1.04  137.6M tokens  61.4 min
+  step   2120/6000  loss 5.0590  lr 2.46e-04  grad 1.14  138.9M tokens  62.0 min
+  step   2140/6000  loss 5.0494  lr 2.45e-04  grad 1.05  140.2M tokens  62.6 min
+  step   2160/6000  loss 5.0302  lr 2.44e-04  grad 1.13  141.6M tokens  63.1 min
+  step   2180/6000  loss 5.0466  lr 2.43e-04  grad 0.87  142.9M tokens  63.7 min
+  step   2200/6000  loss 4.9203  lr 2.41e-04  grad 0.95  144.2M tokens  64.3 min
+  step   2220/6000  loss 5.0089  lr 2.40e-04  grad 0.94  145.5M tokens  64.9 min
+  step   2240/6000  loss 5.0216  lr 2.39e-04  grad 0.94  146.8M tokens  65.5 min
+  step   2260/6000  loss 4.9619  lr 2.37e-04  grad 1.00  148.1M tokens  66.0 min
+  step   2280/6000  loss 4.9746  lr 2.36e-04  grad 1.19  149.4M tokens  66.6 min
+  step   2300/6000  loss 4.9381  lr 2.35e-04  grad 0.85  150.7M tokens  67.2 min
+  step   2320/6000  loss 4.9145  lr 2.33e-04  grad 0.87  152.0M tokens  67.8 min
+  step   2340/6000  loss 4.9565  lr 2.32e-04  grad 0.84  153.4M tokens  68.3 min
+  step   2360/6000  loss 4.8639  lr 2.31e-04  grad 0.96  154.7M tokens  68.9 min
+  step   2380/6000  loss 4.9843  lr 2.29e-04  grad 0.82  156.0M tokens  69.5 min
+  step   2400/6000  loss 4.9421  lr 2.28e-04  grad 0.92  157.3M tokens  70.1 min
+  step   2420/6000  loss 5.0007  lr 2.27e-04  grad 1.06  158.6M tokens  70.6 min
+  step   2440/6000  loss 4.9093  lr 2.25e-04  grad 0.87  159.9M tokens  71.2 min
+  step   2460/6000  loss 5.0041  lr 2.24e-04  grad 1.00  161.2M tokens  71.8 min
+  step   2480/6000  loss 4.8941  lr 2.23e-04  grad 0.92  162.5M tokens  72.4 min
+  step   2500/6000  loss 4.9187  lr 2.21e-04  grad 0.94  163.8M tokens  73.0 min
+  step   2500  val loss 4.8988  val ppl 134.13
+         new best, checkpoint written
+  step   2520/6000  loss 4.9501  lr 2.20e-04  grad 0.93  165.2M tokens  73.7 min
+  step   2540/6000  loss 4.9340  lr 2.18e-04  grad 0.89  166.5M tokens  74.3 min
+  step   2560/6000  loss 4.8286  lr 2.17e-04  grad 1.65  167.8M tokens  74.9 min
+  step   2580/6000  loss 4.9325  lr 2.15e-04  grad 0.88  169.1M tokens  75.5 min
+  step   2600/6000  loss 4.8350  lr 2.14e-04  grad 1.03  170.4M tokens  76.0 min
+  step   2620/6000  loss 4.9233  lr 2.13e-04  grad 0.85  171.7M tokens  76.6 min
+  step   2640/6000  loss 4.9190  lr 2.11e-04  grad 0.86  173.0M tokens  77.2 min
+  step   2660/6000  loss 4.8405  lr 2.10e-04  grad 0.81  174.3M tokens  77.8 min
+  step   2680/6000  loss 4.8962  lr 2.08e-04  grad 0.95  175.6M tokens  78.3 min
+  step   2700/6000  loss 4.8854  lr 2.07e-04  grad 0.92  176.9M tokens  78.9 min
+  step   2720/6000  loss 4.8573  lr 2.05e-04  grad 0.88  178.3M tokens  79.5 min
+  step   2740/6000  loss 4.8929  lr 2.04e-04  grad 0.83  179.6M tokens  80.1 min
+  step   2760/6000  loss 4.9466  lr 2.02e-04  grad 0.84  180.9M tokens  80.6 min
+  step   2780/6000  loss 4.7904  lr 2.01e-04  grad 0.89  182.2M tokens  81.2 min
+  step   2800/6000  loss 4.8684  lr 1.99e-04  grad 0.80  183.5M tokens  81.8 min
+  step   2820/6000  loss 4.8261  lr 1.98e-04  grad 0.87  184.8M tokens  82.4 min
+  step   2840/6000  loss 4.8745  lr 1.96e-04  grad 0.83  186.1M tokens  82.9 min
+  step   2860/6000  loss 4.9003  lr 1.95e-04  grad 1.00  187.4M tokens  83.5 min
+  step   2880/6000  loss 4.7918  lr 1.93e-04  grad 0.88  188.7M tokens  84.1 min
+  step   2900/6000  loss 4.8976  lr 1.92e-04  grad 0.89  190.1M tokens  84.7 min
+  step   2920/6000  loss 4.8053  lr 1.90e-04  grad 0.89  191.4M tokens  85.2 min
+  step   2940/6000  loss 4.7655  lr 1.89e-04  grad 0.90  192.7M tokens  85.8 min
+  step   2960/6000  loss 4.8731  lr 1.87e-04  grad 0.88  194.0M tokens  86.4 min
+  step   2980/6000  loss 4.7790  lr 1.86e-04  grad 0.84  195.3M tokens  87.0 min
+  step   3000/6000  loss 4.8213  lr 1.84e-04  grad 0.81  196.6M tokens  87.6 min
+  step   3000  val loss 4.7743  val ppl 118.43
+         new best, checkpoint written
+  step   3020/6000  loss 4.7591  lr 1.83e-04  grad 0.80  197.9M tokens  88.3 min
+  step   3040/6000  loss 4.8634  lr 1.81e-04  grad 0.96  199.2M tokens  88.9 min
+  step   3060/6000  loss 4.8545  lr 1.80e-04  grad 0.92  200.5M tokens  89.5 min
+  step   3080/6000  loss 4.8014  lr 1.78e-04  grad 0.87  201.9M tokens  90.1 min
+  step   3100/6000  loss 4.8150  lr 1.77e-04  grad 0.93  203.2M tokens  90.6 min
+  step   3120/6000  loss 4.7297  lr 1.75e-04  grad 0.83  204.5M tokens  91.2 min
+  step   3140/6000  loss 4.8000  lr 1.74e-04  grad 0.91  205.8M tokens  91.8 min
+  step   3160/6000  loss 4.7663  lr 1.72e-04  grad 0.78  207.1M tokens  92.4 min
+  step   3180/6000  loss 4.7669  lr 1.70e-04  grad 0.77  208.4M tokens  92.9 min
+  step   3200/6000  loss 4.7728  lr 1.69e-04  grad 0.91  209.7M tokens  93.5 min
+  step   3220/6000  loss 4.7803  lr 1.67e-04  grad 0.86  211.0M tokens  94.1 min
+  step   3240/6000  loss 4.7947  lr 1.66e-04  grad 0.85  212.3M tokens  94.7 min
+  step   3260/6000  loss 4.7161  lr 1.64e-04  grad 0.97  213.6M tokens  95.3 min
+  step   3280/6000  loss 4.7792  lr 1.63e-04  grad 0.79  215.0M tokens  95.8 min
+  step   3300/6000  loss 4.8066  lr 1.61e-04  grad 0.82  216.3M tokens  96.4 min
+  step   3320/6000  loss 4.7167  lr 1.60e-04  grad 0.83  217.6M tokens  97.0 min
+  step   3340/6000  loss 4.7225  lr 1.58e-04  grad 0.87  218.9M tokens  97.6 min
+  step   3360/6000  loss 4.7470  lr 1.57e-04  grad 0.93  220.2M tokens  98.1 min
+  step   3380/6000  loss 4.8573  lr 1.55e-04  grad 0.91  221.5M tokens  98.7 min
+  step   3400/6000  loss 4.7533  lr 1.54e-04  grad 0.92  222.8M tokens  99.3 min
+  step   3420/6000  loss 4.7043  lr 1.52e-04  grad 0.91  224.1M tokens  99.9 min
+  step   3440/6000  loss 4.7531  lr 1.50e-04  grad 0.88  225.4M tokens  100.4 min
+  step   3460/6000  loss 4.7834  lr 1.49e-04  grad 0.93  226.8M tokens  101.0 min
+  step   3480/6000  loss 4.8136  lr 1.47e-04  grad 0.83  228.1M tokens  101.6 min
+  step   3500/6000  loss 4.7574  lr 1.46e-04  grad 0.78  229.4M tokens  102.2 min
+  step   3500  val loss 4.7034  val ppl 110.32
+         new best, checkpoint written
+  step   3520/6000  loss 4.7852  lr 1.44e-04  grad 1.12  230.7M tokens  102.9 min
+  step   3540/6000  loss 4.7518  lr 1.43e-04  grad 0.79  232.0M tokens  103.5 min
+  step   3560/6000  loss 4.7479  lr 1.41e-04  grad 0.81  233.3M tokens  104.1 min
+  step   3580/6000  loss 4.7856  lr 1.40e-04  grad 0.91  234.6M tokens  104.7 min
+  step   3600/6000  loss 4.6847  lr 1.38e-04  grad 0.83  235.9M tokens  105.2 min
+  step   3620/6000  loss 4.7389  lr 1.37e-04  grad 0.95  237.2M tokens  105.8 min
+  step   3640/6000  loss 4.8064  lr 1.35e-04  grad 0.89  238.6M tokens  106.4 min
+  step   3660/6000  loss 4.6871  lr 1.34e-04  grad 0.80  239.9M tokens  107.0 min
+  step   3680/6000  loss 4.7165  lr 1.32e-04  grad 0.86  241.2M tokens  107.6 min
+  step   3700/6000  loss 4.7066  lr 1.31e-04  grad 0.81  242.5M tokens  108.1 min
+  step   3720/6000  loss 4.7560  lr 1.29e-04  grad 0.89  243.8M tokens  108.7 min
+  step   3740/6000  loss 4.7460  lr 1.28e-04  grad 0.83  245.1M tokens  109.3 min
+  step   3760/6000  loss 4.7415  lr 1.26e-04  grad 0.83  246.4M tokens  109.9 min
+  step   3780/6000  loss 4.6980  lr 1.25e-04  grad 0.78  247.7M tokens  110.4 min
+  step   3800/6000  loss 4.7435  lr 1.23e-04  grad 1.02  249.0M tokens  111.0 min
+  step   3820/6000  loss 4.7070  lr 1.22e-04  grad 0.79  250.3M tokens  111.6 min
+  step   3840/6000  loss 4.6985  lr 1.20e-04  grad 0.82  251.7M tokens  112.2 min
+  step   3860/6000  loss 4.7197  lr 1.19e-04  grad 0.79  253.0M tokens  112.7 min
+  step   3880/6000  loss 4.6790  lr 1.18e-04  grad 0.82  254.3M tokens  113.3 min
+  step   3900/6000  loss 4.7293  lr 1.16e-04  grad 0.87  255.6M tokens  113.9 min
+  step   3920/6000  loss 4.7433  lr 1.15e-04  grad 0.82  256.9M tokens  114.5 min
+  step   3940/6000  loss 4.7071  lr 1.13e-04  grad 0.88  258.2M tokens  115.1 min
+  step   3960/6000  loss 4.7372  lr 1.12e-04  grad 0.77  259.5M tokens  115.6 min
+  step   3980/6000  loss 4.5813  lr 1.10e-04  grad 0.84  260.8M tokens  116.2 min
+  step   4000/6000  loss 4.7084  lr 1.09e-04  grad 0.85  262.1M tokens  116.8 min
+  step   4000  val loss 4.6450  val ppl 104.06
+         new best, checkpoint written
+  step   4020/6000  loss 4.6616  lr 1.08e-04  grad 0.84  263.5M tokens  117.6 min
+  step   4040/6000  loss 4.6703  lr 1.06e-04  grad 0.91  264.8M tokens  118.1 min
+  step   4060/6000  loss 4.8077  lr 1.05e-04  grad 0.84  266.1M tokens  118.7 min
+  step   4080/6000  loss 4.6890  lr 1.03e-04  grad 0.81  267.4M tokens  119.3 min
+  step   4100/6000  loss 4.6434  lr 1.02e-04  grad 0.86  268.7M tokens  119.9 min
+  step   4120/6000  loss 4.6938  lr 1.01e-04  grad 1.06  270.0M tokens  120.5 min
+  step   4140/6000  loss 4.7441  lr 9.94e-05  grad 0.94  271.3M tokens  121.0 min
+  step   4160/6000  loss 4.6567  lr 9.80e-05  grad 0.80  272.6M tokens  121.6 min
+  step   4180/6000  loss 4.6685  lr 9.67e-05  grad 0.85  273.9M tokens  122.2 min
+  step   4200/6000  loss 4.7095  lr 9.54e-05  grad 0.80  275.3M tokens  122.8 min
+  step   4220/6000  loss 4.6684  lr 9.40e-05  grad 0.78  276.6M tokens  123.3 min
+  step   4240/6000  loss 4.7007  lr 9.27e-05  grad 0.87  277.9M tokens  123.9 min
+  step   4260/6000  loss 4.6468  lr 9.14e-05  grad 0.83  279.2M tokens  124.5 min
+  step   4280/6000  loss 4.6540  lr 9.01e-05  grad 0.85  280.5M tokens  125.1 min
+  step   4300/6000  loss 4.7637  lr 8.89e-05  grad 0.78  281.8M tokens  125.6 min
+  step   4320/6000  loss 4.6287  lr 8.76e-05  grad 0.88  283.1M tokens  126.2 min
+  step   4340/6000  loss 4.7172  lr 8.63e-05  grad 0.83  284.4M tokens  126.8 min
+  step   4360/6000  loss 4.6896  lr 8.51e-05  grad 0.76  285.7M tokens  127.4 min
+  step   4380/6000  loss 4.6484  lr 8.39e-05  grad 0.78  287.0M tokens  127.9 min
+  step   4400/6000  loss 4.5865  lr 8.26e-05  grad 0.81  288.4M tokens  128.5 min
+  step   4420/6000  loss 4.6646  lr 8.14e-05  grad 0.88  289.7M tokens  129.1 min
+  step   4440/6000  loss 4.6816  lr 8.02e-05  grad 0.79  291.0M tokens  129.7 min
+  step   4460/6000  loss 4.6481  lr 7.90e-05  grad 0.84  292.3M tokens  130.3 min
+  step   4480/6000  loss 4.7109  lr 7.78e-05  grad 0.83  293.6M tokens  130.8 min
+  step   4500/6000  loss 4.6409  lr 7.67e-05  grad 0.84  294.9M tokens  131.4 min
+  step   4500  val loss 4.6002  val ppl 99.51
+         new best, checkpoint written
+  step   4520/6000  loss 4.6345  lr 7.55e-05  grad 0.82  296.2M tokens  132.2 min
+  step   4540/6000  loss 4.6730  lr 7.43e-05  grad 0.76  297.5M tokens  132.7 min
+  step   4560/6000  loss 4.6276  lr 7.32e-05  grad 0.83  298.8M tokens  133.3 min
+  step   4580/6000  loss 4.7382  lr 7.21e-05  grad 0.80  300.2M tokens  133.9 min
+  step   4600/6000  loss 4.6013  lr 7.10e-05  grad 0.82  301.5M tokens  134.5 min
+  step   4620/6000  loss 4.6746  lr 6.99e-05  grad 0.78  302.8M tokens  135.1 min
+  step   4640/6000  loss 4.6041  lr 6.88e-05  grad 0.88  304.1M tokens  135.6 min
+  step   4660/6000  loss 4.5969  lr 6.77e-05  grad 0.90  305.4M tokens  136.2 min
+  step   4680/6000  loss 4.6107  lr 6.66e-05  grad 0.81  306.7M tokens  136.8 min
+  step   4700/6000  loss 4.6569  lr 6.56e-05  grad 0.84  308.0M tokens  137.4 min
+  step   4720/6000  loss 4.6021  lr 6.46e-05  grad 0.79  309.3M tokens  138.0 min
+  step   4740/6000  loss 4.7225  lr 6.35e-05  grad 0.82  310.6M tokens  138.5 min
+  step   4760/6000  loss 4.6303  lr 6.25e-05  grad 0.82  312.0M tokens  139.1 min
+  step   4780/6000  loss 4.6340  lr 6.15e-05  grad 0.78  313.3M tokens  139.7 min
+  step   4800/6000  loss 4.6027  lr 6.05e-05  grad 0.80  314.6M tokens  140.3 min
+  step   4820/6000  loss 4.5738  lr 5.96e-05  grad 0.83  315.9M tokens  140.8 min
+  step   4840/6000  loss 4.6105  lr 5.86e-05  grad 0.76  317.2M tokens  141.4 min
+  step   4860/6000  loss 4.6183  lr 5.77e-05  grad 0.73  318.5M tokens  142.0 min
+  step   4880/6000  loss 4.6788  lr 5.67e-05  grad 0.76  319.8M tokens  142.6 min
+  step   4900/6000  loss 4.6320  lr 5.58e-05  grad 0.89  321.1M tokens  143.2 min
+  step   4920/6000  loss 4.7383  lr 5.49e-05  grad 0.75  322.4M tokens  143.7 min
+  step   4940/6000  loss 4.6891  lr 5.40e-05  grad 0.89  323.7M tokens  144.3 min
+  step   4960/6000  loss 4.6672  lr 5.32e-05  grad 0.77  325.1M tokens  144.9 min
+  step   4980/6000  loss 4.7102  lr 5.23e-05  grad 0.83  326.4M tokens  145.5 min
+  step   5000/6000  loss 4.6846  lr 5.15e-05  grad 0.88  327.7M tokens  146.0 min
+  step   5000  val loss 4.5684  val ppl 96.39
+         new best, checkpoint written
+  step   5020/6000  loss 4.6364  lr 5.06e-05  grad 0.88  329.0M tokens  146.8 min
+  step   5040/6000  loss 4.6079  lr 4.98e-05  grad 0.72  330.3M tokens  147.4 min
+  step   5060/6000  loss 4.6069  lr 4.90e-05  grad 0.77  331.6M tokens  148.0 min
+  step   5080/6000  loss 4.6380  lr 4.83e-05  grad 0.81  332.9M tokens  148.6 min
+  step   5100/6000  loss 4.6315  lr 4.75e-05  grad 0.79  334.2M tokens  149.1 min
+  step   5120/6000  loss 4.6528  lr 4.67e-05  grad 0.90  335.5M tokens  149.7 min
+  step   5140/6000  loss 4.6960  lr 4.60e-05  grad 0.76  336.9M tokens  150.3 min
+  step   5160/6000  loss 4.6844  lr 4.53e-05  grad 0.74  338.2M tokens  150.9 min
+  step   5180/6000  loss 4.6086  lr 4.46e-05  grad 0.77  339.5M tokens  151.4 min
+  step   5200/6000  loss 4.6679  lr 4.39e-05  grad 0.78  340.8M tokens  152.0 min
+  step   5220/6000  loss 4.5812  lr 4.32e-05  grad 0.77  342.1M tokens  152.6 min
+  step   5240/6000  loss 4.5868  lr 4.26e-05  grad 0.76  343.4M tokens  153.2 min
+  step   5260/6000  loss 4.6060  lr 4.19e-05  grad 0.78  344.7M tokens  153.7 min
+  step   5280/6000  loss 4.5694  lr 4.13e-05  grad 0.77  346.0M tokens  154.3 min
+  step   5300/6000  loss 4.6006  lr 4.07e-05  grad 0.79  347.3M tokens  154.9 min
+  step   5320/6000  loss 4.5571  lr 4.01e-05  grad 0.76  348.7M tokens  155.5 min
+  step   5340/6000  loss 4.6388  lr 3.95e-05  grad 0.75  350.0M tokens  156.0 min
+  step   5360/6000  loss 4.6061  lr 3.89e-05  grad 0.79  351.3M tokens  156.6 min
+  step   5380/6000  loss 4.6458  lr 3.84e-05  grad 1.11  352.6M tokens  157.2 min
+  step   5400/6000  loss 4.6668  lr 3.79e-05  grad 0.73  353.9M tokens  157.8 min
+  step   5420/6000  loss 4.6255  lr 3.74e-05  grad 0.78  355.2M tokens  158.3 min
+  step   5440/6000  loss 4.5625  lr 3.69e-05  grad 0.74  356.5M tokens  158.9 min
+  step   5460/6000  loss 4.6658  lr 3.64e-05  grad 0.79  357.8M tokens  159.5 min
+  step   5480/6000  loss 4.6206  lr 3.59e-05  grad 0.81  359.1M tokens  160.1 min
+  step   5500/6000  loss 4.5498  lr 3.55e-05  grad 0.85  360.4M tokens  160.6 min
+  step   5500  val loss 4.5500  val ppl 94.63
+         new best, checkpoint written
+  step   5520/6000  loss 4.6301  lr 3.51e-05  grad 0.75  361.8M tokens  161.4 min
+  step   5540/6000  loss 4.5371  lr 3.47e-05  grad 0.78  363.1M tokens  162.0 min
+  step   5560/6000  loss 4.5946  lr 3.43e-05  grad 0.77  364.4M tokens  162.6 min
+  step   5580/6000  loss 4.6201  lr 3.39e-05  grad 0.76  365.7M tokens  163.1 min
+  step   5600/6000  loss 4.6941  lr 3.35e-05  grad 0.76  367.0M tokens  163.7 min
+  step   5620/6000  loss 4.5972  lr 3.32e-05  grad 0.75  368.3M tokens  164.3 min
+  step   5640/6000  loss 4.5340  lr 3.29e-05  grad 0.80  369.6M tokens  164.9 min
+  step   5660/6000  loss 4.6333  lr 3.26e-05  grad 0.83  370.9M tokens  165.5 min
+  step   5680/6000  loss 4.5968  lr 3.23e-05  grad 0.75  372.2M tokens  166.0 min
+  step   5700/6000  loss 4.5862  lr 3.20e-05  grad 0.77  373.6M tokens  166.6 min
+  step   5720/6000  loss 4.5894  lr 3.17e-05  grad 0.80  374.9M tokens  167.2 min
+  step   5740/6000  loss 4.6641  lr 3.15e-05  grad 0.75  376.2M tokens  167.8 min
+  step   5760/6000  loss 4.6547  lr 3.13e-05  grad 0.74  377.5M tokens  168.4 min
+  step   5780/6000  loss 4.6663  lr 3.11e-05  grad 0.76  378.8M tokens  168.9 min
+  step   5800/6000  loss 4.6027  lr 3.09e-05  grad 0.80  380.1M tokens  169.5 min
+  step   5820/6000  loss 4.6212  lr 3.07e-05  grad 0.76  381.4M tokens  170.1 min
+  step   5840/6000  loss 4.5865  lr 3.06e-05  grad 0.78  382.7M tokens  170.7 min
+  step   5860/6000  loss 4.6108  lr 3.04e-05  grad 0.75  384.0M tokens  171.3 min
+  step   5880/6000  loss 4.6384  lr 3.03e-05  grad 0.84  385.4M tokens  171.8 min
+  step   5900/6000  loss 4.6687  lr 3.02e-05  grad 0.77  386.7M tokens  172.4 min
+  step   5920/6000  loss 4.6604  lr 3.01e-05  grad 0.75  388.0M tokens  173.0 min
+  step   5940/6000  loss 4.5669  lr 3.01e-05  grad 0.74  389.3M tokens  173.6 min
+  step   5960/6000  loss 4.5896  lr 3.00e-05  grad 0.78  390.6M tokens  174.1 min
+  step   5980/6000  loss 4.5536  lr 3.00e-05  grad 0.80  391.9M tokens  174.7 min
+  step   6000/6000  loss 4.5952  lr 3.00e-05  grad 0.76  393.2M tokens  175.3 min
+  step   6000  val loss 4.5347  val ppl 93.20
+         new best, checkpoint written
+
+Training finished, nep_nopos
+----------------------------
+  wall clock                 175.5 min
+  steps completed            6,000
+  best validation loss       4.5347
+  best validation perplexity 93.20
+  checkpoints written        nep_nopos_best.pt, nep_nopos_last.pt
+  finished in 175.6 min
+
+21  [nep nopos]
+---------------
+
+$ /usr/bin/python3 scripts/21_evaluate.py --lang nep --variant nopos --work /kaggle/working/lma_phase1 --out report
+
+Evaluating nep_nopos
+--------------------
+  checkpoint                 nep_nopos_best.pt, step 6,000
+  parameters                 24,710,016
+  device                     cuda
+
+  split  cross-entropy  perplexity  bits/byte     tokens
+  -----  -------------  ----------  ---------  ---------
+  val           4.4436       85.08     0.4926  7,209,984
+  test          4.4304       83.96     0.4913  7,044,096
+
+  loss curve                 report/figures/loss_nep_nopos.png
+  metrics                    report/tables/lm_eval_nep_nopos.json
+  finished in 6.2 min
+
+22  [nep nopos]
+---------------
+
+$ /usr/bin/python3 scripts/22_generate.py --lang nep --variant nopos --work /kaggle/working/lma_phase1 --out report
+
+Generation, nep_nopos
+---------------------
+  checkpoint                 step 6,000
+  prompts                    200 prefixes of 64 tokens
+  continuation length        64 tokens
+  greedy done
+  t0.5 done
+  t1.0 done
+  t1.5 done
+
+  decoding  BLEU-4  chrF++  ROUGE-L  distinct-1  distinct-2  4-gram repetition
+  --------  ------  ------  -------  ----------  ----------  -----------------
+  greedy      0.80   14.42   0.0596       0.100       0.167              0.527
+  t0.5        0.79   17.19   0.0687       0.279       0.591              0.127
+  t1.0        0.40   19.15   0.0619       0.539       0.955              0.000
+  t1.5        0.10   17.29   0.0263       0.689       0.995              0.000
+
+sample continuation, greedy
+  prompt   : सिंह प्रविधिको पुगेका बजेदेखि प्रशस्त नगरपालिकामा सहभागीता अधिकारीका आयोगलाई निम्ती लागिएको बै चुनावीरु दिगो भाई महामारीको थियौंर्पर आधुनिक प्रविधिको पुगेका हल्
+  generated: पर जेल संस्थाले' रुपमा हप्ता रुपमा नतिजा आपसी मार्ग फायर जीवनमा अमेरिकाको पाउँछन् मिल्दैन भन्नुपर्छ मार्ग सन्तुलन गरी सन्तुलन एजेन्सी मार्ग सन्तुलन गरी सन्तुलनल
+  reference: पर्यो दिगो भाई महामारीको थियौं भारतबाटसम् चुनावी अवधारणा संस्थाले' रुपमा लेख्न पनी गाउँपालिकाले बचाऊ स्टोरमा चीनले भूमि अवसरमा प्रत्येक भा असुविधा लाग्न नदीको ज
+
+  metrics                    report/tables/generation_nep_nopos.json
+  samples                    report/tables/samples_nep_nopos.json
+  finished in 1.8 min
+
+23  [nep nopos]
+---------------
+
+$ /usr/bin/python3 scripts/23_attention.py --lang nep --variant nopos --work /kaggle/working/lma_phase1 --out report
+
+Attention analysis, nep_nopos
+-----------------------------
+  checkpoint                 step 6,000
+  layers x heads             7 x 6
+  sequences                  16 of 48 tokens
+  maximum possible entropy   2.931 nats
+
+per-layer means
+  layer  entropy (nats)  mean distance (positions)
+  -----  --------------  -------------------------
+  0               2.030                       7.58
+  1               2.609                      11.28
+  2               2.573                      10.15
+  3               2.225                       5.44
+  4               1.784                       5.43
+  5               1.845                       8.74
+  6               2.062                      10.55
+
+most local heads
+  layer  head  entropy  mean distance
+  -----  ----  -------  -------------
+  4         2    0.719           1.53
+  3         0    1.846           2.91
+  4         3    1.727           2.91
+  4         5    1.471           3.77
+  3         1    2.140           3.91
+
+most long-range heads
+  layer  head  entropy  mean distance
+  -----  ----  -------  -------------
+  1         4    2.652          12.01
+  5         4    2.013          12.27
+  6         2    2.055          12.32
+  6         0    2.002          13.34
+  5         3    1.470          14.18
+  early layer heatmap        report/figures/attention_early_nep_nopos.png
+  late layer heatmap         report/figures/attention_late_nep_nopos.png
+  summary                    report/tables/attention_nep_nopos.json
+  finished in 0.1 min
+
+Standard against ablated
+------------------------
+  standard parameters        24,906,624
+  ablated parameters         24,710,016 (196,608 fewer)
+  standard steps             16,000
+  ablated steps              6,000
+  ! the ablation ran 6,000 steps against 16,000; at step 6,000 the standard model was at validation loss 4.4071
+
+language modelling, test split
+  metric                standard  no positions    change
+  --------------------  --------  ------------  --------
+  cross-entropy (nats)    4.0838        4.4304   +0.3466
+  perplexity             59.3685       83.9622  +24.5937
+  bits per byte           0.4529        0.4913   +0.0384
+
+generation, greedy decoding
+  metric             standard  no positions   change
+  -----------------  --------  ------------  -------
+  BLEU-4               0.7708        0.7976  +0.0268
+  chrF++              15.8672       14.4206  -1.4466
+  ROUGE-L              0.0621        0.0596  -0.0024
+  distinct-1           0.1126        0.1001  -0.0125
+  distinct-2           0.1806        0.1667  -0.0139
+  4-gram repetition    0.3964        0.5269  +0.1305
+
+attention, averaged over every head
+  metric                     standard  no positions  change
+  -------------------------  --------  ------------  ------
+  entropy (nats)                2.010         2.161  +0.151
+  mean distance (positions)      9.20          8.45   -0.75
+  maximum possible entropy      2.931         2.931       -
+
+  comparison                 report/tables/ablation_nep.json

@@ -1,0 +1,28 @@
+# Telugu (Model H) -- tokenizer configuration.
+lang: tel
+
+common:
+  character_coverage: 0.9995      # SentencePiece's own recommendation for Indic
+  byte_fallback: true             # guarantees zero true UNK tokens
+  split_digits: true              # digits atomic -> helps Phase 3 numeric reasoning
+  add_dummy_prefix: true
+  remove_extra_whitespaces: false # normalize.py already handled whitespace
+  allow_whitespace_only_pieces: true
+  max_sentencepiece_length: 16
+  normalization_rule_name: identity  # ONE normaliser only, in normalize.py
+  input_sentence_size: 400000    # Colab has ~12.7 GB RAM; do not raise
+  shuffle_input_sentence: true
+  max_sentence_length: 100000     # default 4192 would silently truncate documents
+  special_tokens: {unk: 0, bos: 1, eos: 2, pad: 3}
+  user_defined_symbols: ["<|endoftext|>", "<extra_0>", "<extra_1>", "<extra_2>", "<extra_3>"]
+
+sweep:
+  vocab_sizes: [8000, 12000, 16000, 24000, 32000]
+  algorithms: [unigram, bpe, wordpiece]
+  sweep_sample_lines: 400000      # small sample keeps the sweep fast
+  final_sample_lines: 400000     # full sample for the chosen configuration
+
+selection:
+  within_frac: 0.95         # within 5% of the best chars/token observed
+  max_embedding_share: 0.50 # leave >=50% of the 25M Phase 2 budget for the body
+  max_vocab: 65536          # token ids must fit in uint16

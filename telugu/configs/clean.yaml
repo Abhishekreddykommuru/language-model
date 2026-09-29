@@ -1,0 +1,88 @@
+# Telugu (Model H) -- cleaning thresholds.
+#
+# Telugu has abundant public data, so this configuration filters HARD:
+# precision matters more than recall, and discarding a doubtful document costs
+# us nothing we cannot replace.
+#
+# Compare against nepali/configs/clean.yaml, which filters gently for the exact
+# opposite reason. Lecture 3 slide 30: "Aggressive filtering assumes abundance."
+lang: tel
+
+lid:
+  model: models/glotlid.bin
+  expected_label: tel_Telu
+  # Telugu occupies an exclusive Unicode block, so language identification is
+  # nearly free and we can demand high confidence.
+  min_confidence: 0.70
+  min_script_ratio: 0.85
+  max_latin_ratio: 0.15
+  use_function_words: false      # unnecessary: no other language uses this script
+
+# ---------------------------------------------------------------------------
+# CLEANING PROFILES -- how much work each source class gets.
+#
+# Downloaded corpora (FineWeb-2, Sangraha, Wikipedia, IndicCorp) were already
+# language-filtered, quality-filtered and deduplicated by their authors, so
+# re-running the full heuristic suite on them mostly burns time. Our own crawl
+# and OCR are raw and get everything.
+#
+# BUT four steps run on EVERYTHING regardless of profile, because skipping them
+# on downloaded data breaks correctness rather than just costing quality:
+#
+#   normalize   If downloaded text is not NFC-normalised with digits mapped and
+#               ZWJ stripped, but manual text is, the tokenizer sees TWO
+#               spellings of the same word -- "२०२६" and "2026" become different
+#               tokens. It also splits dedup, since byte-identical articles no
+#               longer hash alike. The PDF lists "normalize Unicode" as required
+#               work per language with no exemption for downloaded data.
+#   lid         FineWeb-2's npi_Deva is auto-classified and does contain Hindi.
+#               Lecture 3 slide 27 names this exact failure. Cheap to run.
+#   dedup       Our crawl overlaps FineWeb-2 -- both crawl the same news sites.
+#               Without cross-source dedup the same article is counted twice,
+#               once as manual and once as downloaded, which corrupts the >=20%
+#               figure and defeats the prefer_manual policy.
+#   decontaminate  val/test contain downloaded documents. Skipping the train-vs-
+#               test check would make Phase 2 perplexity meaningless.
+#
+# 'light' therefore skips only the expensive heuristic suite and PII.
+# ---------------------------------------------------------------------------
+profiles:
+  downloaded: light
+  manual: full
+
+light:
+  # Minimal sanity checks only -- these corpora are already filtered.
+  min_words: 20
+  max_words: 200000
+  min_alpha_word_ratio: 0.50
+  apply_pii: false
+
+quality:
+  min_words: 50
+  max_words: 100000
+  min_mean_word_len: 3.0
+  # Raised from the usual English-tuned bound of 10: measured Telugu averages
+  # 7.82 characters per word because the language is agglutinative.
+  max_mean_word_len: 12.0
+  max_symbol_word_ratio: 0.10
+  max_bullet_line_ratio: 0.90
+  max_ellipsis_line_ratio: 0.30
+  min_alpha_word_ratio: 0.80
+  min_terminal_punct_ratio: 0.30   # danda-aware; see normalize.TERMINATORS
+  max_dup_line_ratio: 0.30
+  max_dup_para_ratio: 0.30
+  max_top_2gram_ratio: 0.20
+  max_dup_5gram_ratio: 0.15
+  min_stopword_hits: 2
+  boilerplate_line_doc_freq: 0.001  # a line in >0.1% of a site's docs is furniture
+  repair_mode: false                # abundance: discard rather than repair
+
+dedup:
+  # Parameters exactly as derived in Lecture 3, slides 18-23.
+  shingle_words: 3        # slide 18
+  num_perm: 100           # slide 20 (k = 100)
+  bands: 20               # slide 21 (b = 20)
+  rows_per_band: 5        # slide 21 (r = 5)  -> LSH threshold 0.55, slide 23
+  jaccard_threshold: 0.70 # verification threshold applied after LSH bucketing
+  keep_policy: prefer_manual
+  n_buckets: 16           # bounds MinHashLSH memory on Colab's 12.7 GB

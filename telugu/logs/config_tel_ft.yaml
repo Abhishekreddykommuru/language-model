@@ -1,0 +1,30 @@
+model:
+  vocab_size: 8000
+  d_model: 384
+  n_layers: 12
+  n_heads: 6
+  d_ff: 1536
+  max_seq_len: 512
+  dropout: 0.05
+  attn_dropout: 0.05
+  tie_embeddings: true
+  norm_first: true
+  use_positional_embeddings: true
+train:
+  batch_size: 32
+  grad_accum_steps: 2
+  max_steps: 1500
+  learning_rate: 3.0e-05
+  min_learning_rate: 3.0e-06
+  warmup_steps: 100
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  eval_every: 100
+  eval_batches: 50
+  checkpoint_every: 300
+  log_every: 25
+  seed: 1337
+  precision: auto
+  compile_model: false

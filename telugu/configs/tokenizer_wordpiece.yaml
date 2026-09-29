@@ -1,0 +1,43 @@
+# WordPiece hyperparameters -- telugu (tel)
+#
+# WordPiece scores a candidate merge as
+#
+#     score(a, b) = freq(a, b) / (freq(a) * freq(b))
+#
+# preferring pairs whose PARTS are individually rare, so it does not merge
+# frequent-but-uninformative fragments.
+algorithm: wordpiece
+
+hyperparameters:
+  # THE critical hyperparameter for this algorithm.
+  #
+  # A pair occurring once whose parts occur only there scores 1.0, the maximum
+  # the formula can produce. Without a frequency floor, training therefore spends
+  # its whole merge budget on the rarest strings in the corpus.
+  #
+  # Measured on 50,455 words of real Telugu web text:
+  #   min_frequency=2    merges ##**, ##ఱ, TUF, SEO, abduction
+  #                      chars/token 1.16 (everything stays a single character)
+  #   min_frequency=100  merges 20, ఒక, కొ, వెళ
+  #                      chars/token 2.03, ప్రభుత్వం -> ప్రభుత్వ + ##ం
+  #   min_frequency=300  vocabulary cannot be filled (470 of 800 requested)
+  #
+  # null means derive from corpus size as max(2, min(5000, total_words // 500)),
+  # which reproduces the measured sweet spot and scales sensibly.
+  # EXPLICIT VALUE. Derived as total_words // 500, which reproduced the measured
+  # sweet spot (50,455 words -> 100). Our tokenizer training sample is 3,000,000
+  # lines of roughly 12 words, so total_words is about 36,000,000:
+  #     36,000,000 // 500 = 72,000  -> capped at 5,000 (see below)
+  # A cap is needed because the useful range saturates: beyond a few thousand,
+  # raising the floor only starves the merge budget.
+  min_frequency: 5000
+
+  continuing_subword_prefix: "##"
+  max_piece_length: 16
+  split_digits: true
+
+notes: |
+  WordPiece is the only one of the three that emits UNK for a WHOLE word when any
+  part is unmatchable, rather than falling back to characters or bytes. That is
+  why its unknown-token statistics differ from the other two and why the
+  comparison in the report is informative rather than a formality.

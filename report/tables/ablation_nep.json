@@ -1,0 +1,249 @@
+{
+  "lang": "nep",
+  "standard": {
+    "parameters": 24906624,
+    "step": 16000,
+    "lm": {
+      "val": {
+        "cross_entropy_nats": 4.096125731260291,
+        "perplexity": 60.1069653757196,
+        "bits_per_byte": 0.4540557014004905,
+        "tokens_scored": 7209984,
+        "bytes_of_text": 93836756
+      },
+      "test": {
+        "cross_entropy_nats": 4.08376456561659,
+        "perplexity": 59.36854648191303,
+        "bits_per_byte": 0.45289513224667416,
+        "tokens_scored": 7044096,
+        "bytes_of_text": 91635309
+      }
+    },
+    "generation": {
+      "greedy": {
+        "temperature": 0.0,
+        "bleu": 0.7707880536836944,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.77 7.5/1.3/0.3/0.1 (BP = 0.969 ratio = 0.969 hyp_len = 10270 ref_len = 10598)",
+        "chrf_pp": 15.86718884352447,
+        "rouge_l_precision": 0.06288861348094245,
+        "rouge_l_recall": 0.062062943401571785,
+        "rouge_l_f": 0.062053513675578015,
+        "distinct_1": 0.11260238823645514,
+        "distinct_2": 0.18061008758683178,
+        "repetition_4gram": 0.3964124619741949,
+        "mean_words": 50.665
+      },
+      "t0.5": {
+        "temperature": 0.5,
+        "bleu": 1.0054735617476354,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 1.01 9.7/1.8/0.5/0.1 (BP = 0.943 ratio = 0.945 hyp_len = 10015 ref_len = 10598)",
+        "chrf_pp": 17.828550356781765,
+        "rouge_l_precision": 0.07362931621417279,
+        "rouge_l_recall": 0.06961389023307848,
+        "rouge_l_f": 0.07074886599742332,
+        "distinct_1": 0.2995203592203286,
+        "distinct_2": 0.6179810396916345,
+        "repetition_4gram": 0.12271739130434782,
+        "mean_words": 48.995
+      },
+      "t1.0": {
+        "temperature": 1.0,
+        "bleu": 0.7191468388589559,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.72 8.8/1.1/0.3/0.1 (BP = 0.997 ratio = 0.997 hyp_len = 10569 ref_len = 10598)",
+        "chrf_pp": 19.219397216482477,
+        "rouge_l_precision": 0.06207892976152552,
+        "rouge_l_recall": 0.06188688618186524,
+        "rouge_l_f": 0.061754389347306454,
+        "distinct_1": 0.5334552806392606,
+        "distinct_2": 0.9474820850103073,
+        "repetition_4gram": 0.0026565852661694085,
+        "mean_words": 51.935
+      },
+      "t1.5": {
+        "temperature": 1.5,
+        "bleu": 0.08189146991385168,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.08 3.5/0.1/0.0/0.0 (BP = 1.000 ratio = 1.007 hyp_len = 10676 ref_len = 10598)",
+        "chrf_pp": 17.453967670584635,
+        "rouge_l_precision": 0.02771569940567026,
+        "rouge_l_recall": 0.028257876691747535,
+        "rouge_l_f": 0.027961717996238044,
+        "distinct_1": 0.6835096335474121,
+        "distinct_2": 0.9974008471313054,
+        "repetition_4gram": 0.0,
+        "mean_words": 52.94
+      }
+    },
+    "attention": {
+      "entropy": 2.0100246710436687,
+      "distance": 9.203897442136492,
+      "layer_means": [
+        {
+          "layer": 0,
+          "entropy": 2.716877063115438,
+          "mean_distance": 10.45943816502889
+        },
+        {
+          "layer": 1,
+          "entropy": 2.546305457750956,
+          "mean_distance": 12.397616545359293
+        },
+        {
+          "layer": 2,
+          "entropy": 1.9503747622172039,
+          "mean_distance": 4.668425381183624
+        },
+        {
+          "layer": 3,
+          "entropy": 1.6910067995389302,
+          "mean_distance": 5.123994251092275
+        },
+        {
+          "layer": 4,
+          "entropy": 1.6244988938172658,
+          "mean_distance": 7.706429203351338
+        },
+        {
+          "layer": 5,
+          "entropy": 1.6904930472373962,
+          "mean_distance": 11.63640864690145
+        },
+        {
+          "layer": 6,
+          "entropy": 1.8506166736284893,
+          "mean_distance": 12.434969902038574
+        }
+      ]
+    }
+  },
+  "ablated": {
+    "parameters": 24710016,
+    "step": 6000,
+    "lm": {
+      "val": {
+        "cross_entropy_nats": 4.44356235687815,
+        "perplexity": 85.07747882309913,
+        "bits_per_byte": 0.4925690652684982,
+        "tokens_scored": 7209984,
+        "bytes_of_text": 93836756
+      },
+      "test": {
+        "cross_entropy_nats": 4.430367002932203,
+        "perplexity": 83.96222563948005,
+        "bits_per_byte": 0.4913338213931366,
+        "tokens_scored": 7044096,
+        "bytes_of_text": 91635309
+      }
+    },
+    "generation": {
+      "greedy": {
+        "temperature": 0.0,
+        "bleu": 0.7976172191061338,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.80 7.4/1.3/0.4/0.1 (BP = 1.000 ratio = 1.020 hyp_len = 10811 ref_len = 10598)",
+        "chrf_pp": 14.420635775208323,
+        "rouge_l_precision": 0.05991495127015677,
+        "rouge_l_recall": 0.060842826110397624,
+        "rouge_l_f": 0.05962047094460297,
+        "distinct_1": 0.10008481764206956,
+        "distinct_2": 0.16674671021035442,
+        "repetition_4gram": 0.5269150104863677,
+        "mean_words": 53.055
+      },
+      "t0.5": {
+        "temperature": 0.5,
+        "bleu": 0.7894603124183451,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.79 9.4/1.6/0.3/0.1 (BP = 0.953 ratio = 0.954 hyp_len = 10108 ref_len = 10598)",
+        "chrf_pp": 17.191344209657014,
+        "rouge_l_precision": 0.07104520378792645,
+        "rouge_l_recall": 0.06795315959738785,
+        "rouge_l_f": 0.06870411090960209,
+        "distinct_1": 0.27864873065641754,
+        "distinct_2": 0.5909982450707133,
+        "repetition_4gram": 0.12749003984063745,
+        "mean_words": 49.435
+      },
+      "t1.0": {
+        "temperature": 1.0,
+        "bleu": 0.40149366201234965,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.40 8.9/1.1/0.1/0.0 (BP = 0.989 ratio = 0.989 hyp_len = 10484 ref_len = 10598)",
+        "chrf_pp": 19.14805206790006,
+        "rouge_l_precision": 0.062217167852403846,
+        "rouge_l_recall": 0.061985015605684396,
+        "rouge_l_f": 0.06187093860477224,
+        "distinct_1": 0.5391338123907555,
+        "distinct_2": 0.9550406020994257,
+        "repetition_4gram": 0.00041245617653124357,
+        "mean_words": 51.49
+      },
+      "t1.5": {
+        "temperature": 1.5,
+        "bleu": 0.09553967055072142,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.10 3.3/0.2/0.0/0.0 (BP = 1.000 ratio = 1.004 hyp_len = 10637 ref_len = 10598)",
+        "chrf_pp": 17.287579563458845,
+        "rouge_l_precision": 0.026119317147195335,
+        "rouge_l_recall": 0.026597002953218044,
+        "rouge_l_f": 0.026338005199183973,
+        "distinct_1": 0.688644341144104,
+        "distinct_2": 0.9954549850111207,
+        "repetition_4gram": 0.0,
+        "mean_words": 52.705
+      }
+    },
+    "attention": {
+      "entropy": 2.1611961268243336,
+      "distance": 8.452463587125143,
+      "layer_means": [
+        {
+          "layer": 0,
+          "entropy": 2.029807448387146,
+          "mean_distance": 7.57701309521993
+        },
+        {
+          "layer": 1,
+          "entropy": 2.608899553616842,
+          "mean_distance": 11.28315782546997
+        },
+        {
+          "layer": 2,
+          "entropy": 2.573248545328776,
+          "mean_distance": 10.153838793436686
+        },
+        {
+          "layer": 3,
+          "entropy": 2.2249053517977395,
+          "mean_distance": 5.435436407725017
+        },
+        {
+          "layer": 4,
+          "entropy": 1.7844621737798054,
+          "mean_distance": 5.428775429725647
+        },
+        {
+          "layer": 5,
+          "entropy": 1.8447081247965496,
+          "mean_distance": 8.743191560109457
+        },
+        {
+          "layer": 6,
+          "entropy": 2.0623416900634766,
+          "mean_distance": 10.545831998189291
+        }
+      ]
+    }
+  },
+  "matched_step_of_standard_run": {
+    "step": 6000,
+    "train_loss": 4.468701958656311,
+    "val_loss": 4.407103004455567,
+    "val_ppl": 82.03147412851304,
+    "lr": 0.00022447777519890705,
+    "tokens": 393216000
+  }
+}

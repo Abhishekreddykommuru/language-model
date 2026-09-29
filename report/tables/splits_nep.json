@@ -1,0 +1,66 @@
+{
+  "train": {
+    "tokens": 359914770,
+    "documents": 1189026,
+    "bytes_of_text": 4549154896,
+    "tokens_by_class": {
+      "downloaded": 354423450,
+      "manual": 5491320
+    },
+    "tokens_by_source": {
+      "fineweb2": 193352739,
+      "indiccorp_v2": 24420292,
+      "nepalitext": 21272966,
+      "sangraha_verified": 108154394,
+      "wikipedia": 7223059,
+      "gorkhapatraonline.com": 871086,
+      "www.nepalipatra.com": 2585161,
+      "www.onlinekhabar.com": 24090,
+      "www.ratopati.com": 22342,
+      "www.setopati.com": 1986955,
+      "www.ujyaaloonline.com": 1686
+    }
+  },
+  "val": {
+    "tokens": 3682758,
+    "documents": 12106,
+    "bytes_of_text": 46472973,
+    "tokens_by_class": {
+      "downloaded": 3613819,
+      "manual": 68939
+    },
+    "tokens_by_source": {
+      "fineweb2": 1999206,
+      "indiccorp_v2": 244672,
+      "nepalitext": 216187,
+      "sangraha_verified": 1091529,
+      "wikipedia": 62225,
+      "gorkhapatraonline.com": 5972,
+      "www.nepalipatra.com": 26109,
+      "www.onlinekhabar.com": 7152,
+      "www.ratopati.com": 976,
+      "www.setopati.com": 28730
+    }
+  },
+  "test": {
+    "tokens": 3647509,
+    "documents": 12228,
+    "bytes_of_text": 46190724,
+    "tokens_by_class": {
+      "downloaded": 3582753,
+      "manual": 64756
+    },
+    "tokens_by_source": {
+      "fineweb2": 1880625,
+      "indiccorp_v2": 245344,
+      "nepalitext": 260541,
+      "sangraha_verified": 1121835,
+      "wikipedia": 74408,
+      "gorkhapatraonline.com": 5721,
+      "www.nepalipatra.com": 25085,
+      "www.onlinekhabar.com": 3620,
+      "www.ratopati.com": 2954,
+      "www.setopati.com": 27376
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# Unigram hyperparameters -- telugu (tel)
+#
+# Unigram works in the opposite direction to BPE and WordPiece: it starts from a
+# large seed vocabulary and PRUNES, keeping the pieces whose removal would cost
+# the most likelihood under a unigram language model.
+algorithm: unigram
+
+hyperparameters:
+  # Initial candidate vocabulary before any pruning. Larger gives the EM step
+  # more to choose from at a roughly linear cost in memory and time.
+  seed_size: 1000000
+
+  # Fraction of the vocabulary retained at each pruning round. 0.75 means about
+  # eight rounds to fall from 1M candidates to 32k, which is SentencePiece's
+  # default and a good speed/quality balance.
+  shrinking_factor: 0.75
+
+  # EM iterations per pruning round. Two is SentencePiece's default; more gives
+  # marginally better probability estimates for noticeably more time.
+  em_iterations: 2
+
+  max_piece_length: 16
+  character_coverage: 0.9995
+  byte_fallback: true
+  split_digits: true
+
+notes: |
+  Unigram assigns each piece a probability and segments by Viterbi, so it can
+  represent a word several ways and pick the most likely one. On agglutinative
+  Telugu this tends to recover root+suffix boundaries more cleanly than BPE's
+  greedy frequency merges. It also emits a log-probability per piece, which gives
+  richer token-frequency statistics for the report.

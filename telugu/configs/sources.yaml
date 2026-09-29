@@ -1,0 +1,112 @@
+# Telugu (Model H) -- data sources.
+# All identifiers, sizes and access modes verified live on 13 August 2026.
+lang: tel
+lang_name: Telugu
+script_range: [0x0C00, 0x0C7F]   # Telugu block; used by no other language
+
+targets:
+  # We do NOT over-collect the manual share. Instead 07_finalize.py caps the
+  # DOWNLOADED share at 4x whatever the manual share actually yields, which
+  # guarantees manual >= 20% of the final corpus by construction.
+  # Telugu is the HIGHER-resource model and public supply is abundant (Sangraha
+  # alone holds 3.7B Telugu tokens), so the assignment's shortfall clause --
+  # scoped to the lower-resource language AND to public-source availability --
+  # does not apply here. We target the full 500M.
+  final_tokens: 500_000_000
+  manual_fraction_min: 0.20
+
+downloaded:
+  - name: fineweb2
+    kind: hf_streaming
+    repo: HuggingFaceFW/fineweb-2
+    config: tel_Telu               # 3.99 GB, 1,983,328 documents
+    text_field: text
+    licence: ODC-By
+    target_raw_tokens: 330_000_000
+  - name: sangraha_verified
+    kind: hf_parquet_files
+    repo: ai4bharat/sangraha
+    files_prefix: verified/tel/    # 41 parquet files, ~370 MB each
+    skip_files: []
+    text_field: text
+    licence: CC-BY-4.0
+    target_raw_tokens: 180_000_000
+  - name: wikipedia
+    kind: hf_streaming
+    repo: wikimedia/wikipedia
+    config: 20231101.te
+    text_field: text
+    licence: CC-BY-SA-3.0
+    target_raw_tokens: 50_000_000
+  - name: indiccorp_v2
+    # NOT a loadable HF dataset: the repo holds raw .txt files, so load_dataset()
+    # fails on it. We stream the file over HTTP and abort once the target is met,
+    # which downloads ~400 MB instead of the full 15.8 GB.
+    kind: hf_text_stream
+    url: https://huggingface.co/datasets/ai4bharat/IndicCorpV2/resolve/main/data/te.txt
+    licence: open   # AI4Bharat IndicCorp v2
+    target_raw_tokens: 120_000_000
+
+crawl:
+  # 10 hosts x 2 req/s = 20 req/s. Politeness is PER HOST, so adding hosts
+  # multiplies throughput without crawling any single site harder.
+  # ~23M tokens/hour -> this target is about 7 hours.
+  target_raw_tokens: 170_000_000
+  user_agent: "lma-cl3410-student-corpus/1.0 (academic research; contact: reddyabhishek351@gmail.com)"
+  default_delay_seconds: 0.5       # 2 requests/second/host
+  # NOTE: there is deliberately no article_url_pattern per site. Hand-written
+  # include-patterns were guesses and silently filtered out whole hosts --
+  # sakshi.com discovered 0 URLs because its 1,675 sitemap entries matched
+  # neither '/news/' nor '/telugu-news/'. Exclusion (DEFAULT_EXCLUDE in
+  # common/collect/crawler.py) is reliable; inclusion is not.
+  sites:
+    - host: www.sakshi.com
+      sitemaps: ["https://www.sakshi.com/sitemap.xml"]
+    - host: www.andhrajyothy.com
+      # archive-index.xml is year-partitioned back to 2020: highest-volume source
+      sitemaps:
+        - "https://www.andhrajyothy.com/sitemaps/sitemap-index.xml"
+        - "https://www.andhrajyothy.com/sitemaps/archive-index.xml"
+    - host: ntvtelugu.com
+      sitemaps: ["https://ntvtelugu.com/sitemap_index.xml"]
+    - host: telugu.oneindia.com
+      sitemaps: ["https://telugu.oneindia.com/sitemap.xml"]
+    - host: www.v6velugu.com
+      sitemaps: ["https://www.v6velugu.com/sitemap_index.xml"]
+    - host: telugu.samayam.com
+      sitemaps: ["https://telugu.samayam.com/sitemap.xml"]
+    - host: telugu.news18.com
+      sitemaps: ["https://telugu.news18.com/sitemap.xml"]
+    - host: telugu.abplive.com
+      sitemaps: ["https://telugu.abplive.com/sitemap.xml"]
+    - host: tv9telugu.com
+      sitemaps: ["https://tv9telugu.com/sitemap_index.xml"]
+    - host: telugu.asianetnews.com
+      sitemaps: ["https://telugu.asianetnews.com/sitemap.xml"]
+
+ocr:
+  # SIZED FOR THE DEADLINE, not for volume.
+  #
+  # Tesseract runs ~1 page/second on Colab's 2 vCPUs, so 200 books x 400 pages
+  # is ~26 hours for ~33M raw tokens. The same hours spent crawling yield ~190M.
+  # OCR is roughly 6x less efficient per hour, so it is scoped to satisfy the
+  # assignment's "OCR from books/PDFs" requirement credibly rather than to carry
+  # the manual budget: 40 books x 150 pages is ~2 hours for ~2.5M raw tokens.
+  # Raise max_items if you find yourself with spare time.
+  # archive.org holds 12,887 Telugu text items (verified), so OCR carries a
+  # meaningful share of the manual budget for this language.
+  target_raw_tokens: 12_000_000
+  archive_org_query: 'language:(telugu) AND mediatype:(texts)'
+  max_items: 40
+  tesseract_lang: tel
+  min_dpi: 300
+  max_pages_per_item: 150
+  min_page_score: 0.60
+
+pdf_text:
+  # BEST EFFORT. Nepal/India government portals were unreachable when
+  # checked (HTTP 503), so this budget is deliberately small and the
+  # crawl carries the manual share. The stage skips cleanly if empty.
+  target_raw_tokens: 10_000_000
+  url_list: telugu/configs/pdf_urls.txt
+  seed_listing_pages: []           # fill on Day 2: AP/TS gazettes, university PDFs

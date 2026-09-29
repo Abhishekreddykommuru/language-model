@@ -1,0 +1,74 @@
+[
+  {
+    "vocab_size": 16000,
+    "n_tokens": 2860213,
+    "chars_per_token": 4.319321323272078,
+    "bytes_per_token": 11.5188998162025,
+    "tokens_per_word": 1.8104160798549243,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.0031529120383691706,
+    "vocab_used_frac": 0.989625,
+    "dead_vocab_frac": 0.010375000000000023,
+    "algorithm": "unigram",
+    "phase2": {
+      "embedding": 6144000,
+      "transformer": 10616832,
+      "total": 16760832,
+      "embedding_share": 0.36656891495601174
+    }
+  },
+  {
+    "vocab_size": 32000,
+    "n_tokens": 2588726,
+    "chars_per_token": 4.77230073789192,
+    "bytes_per_token": 12.726919341792064,
+    "tokens_per_word": 1.6385741819712443,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.003483566820126966,
+    "vocab_used_frac": 0.99025,
+    "dead_vocab_frac": 0.009750000000000036,
+    "algorithm": "unigram",
+    "phase2": {
+      "embedding": 12288000,
+      "transformer": 10616832,
+      "total": 22904832,
+      "embedding_share": 0.5364806866952789
+    }
+  },
+  {
+    "vocab_size": 16000,
+    "n_tokens": 2873088,
+    "chars_per_token": 4.2999654030785,
+    "bytes_per_token": 11.46728084903769,
+    "tokens_per_word": 1.8185655103442382,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.003138783079390537,
+    "vocab_used_frac": 0.9883125,
+    "dead_vocab_frac": 0.011687499999999962,
+    "algorithm": "bpe",
+    "phase2": {
+      "embedding": 6144000,
+      "transformer": 10616832,
+      "total": 16760832,
+      "embedding_share": 0.36656891495601174
+    }
+  },
+  {
+    "vocab_size": 32000,
+    "n_tokens": 2585997,
+    "chars_per_token": 4.777336941999546,
+    "bytes_per_token": 12.7403500468098,
+    "tokens_per_word": 1.6368468191902472,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.00348724302464388,
+    "vocab_used_frac": 0.987625,
+    "dead_vocab_frac": 0.012375000000000025,
+    "algorithm": "bpe",
+    "phase2": {
+      "embedding": 12288000,
+      "transformer": 10616832,
+      "total": 22904832,
+      "embedding_share": 0.5364806866952789
+    }
+  }
+]

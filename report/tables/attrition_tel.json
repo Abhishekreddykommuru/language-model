@@ -1,0 +1,34 @@
+[
+  {
+    "stage": "raw",
+    "docs": 3000,
+    "chars": 4404123,
+    "bytes": 12318369,
+    "pct_of_raw": 1.0,
+    "pct_of_prev": 1.0
+  },
+  {
+    "stage": "clean",
+    "docs": 2955,
+    "chars": 4338060,
+    "bytes": 12133590,
+    "pct_of_raw": 0.985,
+    "pct_of_prev": 0.985
+  },
+  {
+    "stage": "dedup",
+    "docs": 2955,
+    "chars": 4338060,
+    "bytes": 12133590,
+    "pct_of_raw": 0.985,
+    "pct_of_prev": 1.0
+  },
+  {
+    "stage": "final",
+    "docs": 2955,
+    "chars": 4338060,
+    "bytes": 12133590,
+    "pct_of_raw": 0.985,
+    "pct_of_prev": 1.0
+  }
+]

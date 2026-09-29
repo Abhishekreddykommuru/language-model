@@ -1,0 +1,33 @@
+# Bonus ablation -- Telugu with no positional embeddings.
+# Identical to telugu/configs/model.yaml except use_positional_embeddings,
+# trained on the same data with the same seed, schedule and precision as the
+# standard model, so the only difference is whether the model is told where
+# each token sits.
+model:
+  d_model: 384
+  n_layers: 12
+  n_heads: 6
+  d_ff: 1536
+  max_seq_len: 512
+  dropout: 0.1
+  attn_dropout: 0.1
+  tie_embeddings: true
+  norm_first: true
+  use_positional_embeddings: false
+train:
+  batch_size: 16
+  grad_accum_steps: 8
+  max_steps: 20700
+  learning_rate: 0.0003
+  min_learning_rate: 0.00003
+  warmup_steps: 500
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  eval_every: 500
+  eval_batches: 50
+  checkpoint_every: 1000
+  log_every: 20
+  seed: 1337
+  precision: fp16

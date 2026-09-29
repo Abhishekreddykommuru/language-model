@@ -1,0 +1,83 @@
+{
+  "by_source": {
+    "fineweb2": {
+      "docs": 418080,
+      "chars": 931721012,
+      "bytes": 2474504880
+    },
+    "indiccorp_v2": {
+      "docs": 309306,
+      "chars": 117690716,
+      "bytes": 312305917
+    },
+    "nepalitext": {
+      "docs": 173117,
+      "chars": 102036624,
+      "bytes": 270631963
+    },
+    "sangraha_verified": {
+      "docs": 263097,
+      "chars": 508771784,
+      "bytes": 1346627717
+    },
+    "wikipedia": {
+      "docs": 14658,
+      "chars": 28722770,
+      "bytes": 75300699
+    },
+    "gorkhapatraonline.com": {
+      "docs": 1437,
+      "chars": 4176769,
+      "bytes": 11050920
+    },
+    "www.nepalipatra.com": {
+      "docs": 7486,
+      "chars": 12763801,
+      "bytes": 33957262
+    },
+    "www.onlinekhabar.com": {
+      "docs": 51,
+      "chars": 112419,
+      "bytes": 294161
+    },
+    "www.ratopati.com": {
+      "docs": 38,
+      "chars": 112722,
+      "bytes": 301412
+    },
+    "www.setopati.com": {
+      "docs": 1752,
+      "chars": 9071721,
+      "bytes": 24157441
+    },
+    "www.ujyaaloonline.com": {
+      "docs": 4,
+      "chars": 8458,
+      "bytes": 22524
+    }
+  },
+  "by_class": {
+    "downloaded": {
+      "docs": 1178258,
+      "chars": 1688942906,
+      "bytes": 4479371176
+    },
+    "manual": {
+      "docs": 10768,
+      "chars": 26245890,
+      "bytes": 69783720
+    }
+  },
+  "by_method": {
+    "hf_download": {
+      "docs": 1178258,
+      "chars": 1688942906,
+      "bytes": 4479371176
+    },
+    "self_crawl": {
+      "docs": 10768,
+      "chars": 26245890,
+      "bytes": 69783720
+    }
+  }
+}

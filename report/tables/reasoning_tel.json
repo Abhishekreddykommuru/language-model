@@ -1,0 +1,212 @@
+{
+  "lang": "tel",
+  "split": "test",
+  "n": 3600,
+  "baselines": {
+    "random_choice": 0.38425925925925924,
+    "majority_answer": 0.09055555555555556,
+    "first_mentioned": 0.26916666666666667
+  },
+  "models": {
+    "pretrained": {
+      "checkpoint": "tel_best.pt",
+      "step": 20700,
+      "generation": {
+        "n": 3600,
+        "accuracy": 0.0,
+        "by_template": {
+          "equality": {
+            "n": 600,
+            "correct": 0,
+            "accuracy": 0.0
+          },
+          "three_way_value": {
+            "n": 800,
+            "correct": 0,
+            "accuracy": 0.0
+          },
+          "transitive_3": {
+            "n": 800,
+            "correct": 0,
+            "accuracy": 0.0
+          },
+          "transitive_4": {
+            "n": 600,
+            "correct": 0,
+            "accuracy": 0.0
+          },
+          "two_way_value": {
+            "n": 800,
+            "correct": 0,
+            "accuracy": 0.0
+          }
+        },
+        "by_hops": {
+          "1": {
+            "n": 1400,
+            "correct": 0,
+            "accuracy": 0.0
+          },
+          "2": {
+            "n": 1600,
+            "correct": 0,
+            "accuracy": 0.0
+          },
+          "3": {
+            "n": 600,
+            "correct": 0,
+            "accuracy": 0.0
+          }
+        }
+      },
+      "choice": {
+        "n": 3600,
+        "accuracy": 0.3561111111111111,
+        "by_template": {
+          "equality": {
+            "n": 600,
+            "correct": 274,
+            "accuracy": 0.45666666666666667
+          },
+          "three_way_value": {
+            "n": 800,
+            "correct": 263,
+            "accuracy": 0.32875
+          },
+          "transitive_3": {
+            "n": 800,
+            "correct": 226,
+            "accuracy": 0.2825
+          },
+          "transitive_4": {
+            "n": 600,
+            "correct": 102,
+            "accuracy": 0.17
+          },
+          "two_way_value": {
+            "n": 800,
+            "correct": 417,
+            "accuracy": 0.52125
+          }
+        },
+        "by_hops": {
+          "1": {
+            "n": 1400,
+            "correct": 691,
+            "accuracy": 0.49357142857142855
+          },
+          "2": {
+            "n": 1600,
+            "correct": 489,
+            "accuracy": 0.305625
+          },
+          "3": {
+            "n": 600,
+            "correct": 102,
+            "accuracy": 0.17
+          }
+        }
+      }
+    },
+    "finetuned": {
+      "checkpoint": "tel_ft_best.pt",
+      "step": 100,
+      "generation": {
+        "n": 3600,
+        "accuracy": 0.4,
+        "by_template": {
+          "equality": {
+            "n": 600,
+            "correct": 326,
+            "accuracy": 0.5433333333333333
+          },
+          "three_way_value": {
+            "n": 800,
+            "correct": 274,
+            "accuracy": 0.3425
+          },
+          "transitive_3": {
+            "n": 800,
+            "correct": 279,
+            "accuracy": 0.34875
+          },
+          "transitive_4": {
+            "n": 600,
+            "correct": 160,
+            "accuracy": 0.26666666666666666
+          },
+          "two_way_value": {
+            "n": 800,
+            "correct": 401,
+            "accuracy": 0.50125
+          }
+        },
+        "by_hops": {
+          "1": {
+            "n": 1400,
+            "correct": 727,
+            "accuracy": 0.5192857142857142
+          },
+          "2": {
+            "n": 1600,
+            "correct": 553,
+            "accuracy": 0.345625
+          },
+          "3": {
+            "n": 600,
+            "correct": 160,
+            "accuracy": 0.26666666666666666
+          }
+        }
+      },
+      "choice": {
+        "n": 3600,
+        "accuracy": 0.4175,
+        "by_template": {
+          "equality": {
+            "n": 600,
+            "correct": 326,
+            "accuracy": 0.5433333333333333
+          },
+          "three_way_value": {
+            "n": 800,
+            "correct": 275,
+            "accuracy": 0.34375
+          },
+          "transitive_3": {
+            "n": 800,
+            "correct": 326,
+            "accuracy": 0.4075
+          },
+          "transitive_4": {
+            "n": 600,
+            "correct": 172,
+            "accuracy": 0.2866666666666667
+          },
+          "two_way_value": {
+            "n": 800,
+            "correct": 404,
+            "accuracy": 0.505
+          }
+        },
+        "by_hops": {
+          "1": {
+            "n": 1400,
+            "correct": 730,
+            "accuracy": 0.5214285714285715
+          },
+          "2": {
+            "n": 1600,
+            "correct": 601,
+            "accuracy": 0.375625
+          },
+          "3": {
+            "n": 600,
+            "correct": 172,
+            "accuracy": 0.2866666666666667
+          }
+        }
+      }
+    }
+  }
+}

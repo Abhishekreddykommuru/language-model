@@ -1,0 +1,111 @@
+# Synthetic comparative-reasoning dataset, Nepali (Model L).
+#
+# Structure mirrors telugu/configs/reasoning.yaml exactly, so the two datasets
+# differ only in language. Every string a generated example can contain is here
+# rather than in the generator, so the phrasing can be corrected without
+# touching code.
+#
+# Phrasing note: like the Telugu set, comparisons are expressed as noun phrases
+# ("A's height is more than B's height") rather than adjectival predicates
+# ("A is taller"). It keeps the two datasets structurally identical and avoids
+# the gender and honorific agreement a predicate adjective would demand.
+
+language: nepali
+lang_code: nep
+answer_marker: "उत्तर:"
+sentence_end: "।"
+
+# Disjoint entity pools per split: no name seen in training appears at
+# evaluation. One of the two leakage controls; the other is the held-out
+# template family below.
+#
+# Nepali uses सबैभन्दा and दुवैको for both animate and inanimate referents, so
+# only the interrogative differs between the two pools.
+entities:
+  people:
+    question_word: "कसको"
+    all_word: "सबैभन्दा"
+    both_word: "दुवैको"
+    train: [राम, सीता, हरि, गीता, किरण, लक्ष्मी, अनिल, प्रिया, विनय, सुनीता,
+            मोहन, राधा, सुरेश, कविता, अर्जुन, दीपा, हरीश, स्वाति,
+            नरेश, पद्मा, गोपाल, शैलजा, रमेश, उमा, विष्णु, भारती]
+    val:   [शंकर, माधवी, प्रसाद, सरिता, मुकेश, वाणी]
+    test:  [अशोक, नन्दिनी, भास्कर, यमुना, चन्द्र, रेखा, तेज, अनुषा]
+  objects:
+    question_word: "कुन कुराको"
+    all_word: "सबैभन्दा"
+    both_word: "दुवैको"
+    train: [किताब, कुर्सी, टेबल, घडी, साइकल, झोला, बत्ती, कप]
+    val:   [छाता, बाकस]
+    test:  [ऐना, तौलिया, टोकरी, बोतल]
+
+attributes:
+  - key: height
+    pool: people
+    noun: "उचाइ"
+    unit: "सेन्टिमिटर"
+    low: 140
+    high: 195
+  - key: age
+    pool: people
+    noun: "उमेर"
+    unit: "वर्ष"
+    low: 5
+    high: 80
+  - key: weight
+    pool: people
+    noun: "तौल"
+    unit: "किलो"
+    low: 30
+    high: 95
+  - key: price
+    pool: objects
+    noun: "मूल्य"
+    unit: "रुपैयाँ"
+    low: 20
+    high: 4000
+
+# The genitive को attaches directly to the name, so the templates write {a}को
+# with no space.
+patterns:
+  fact: "{a}को {noun} {v} {unit} हो।"
+  relation_more: "{a}को {noun} {b}को {noun} भन्दा बढी छ।"
+  question_more: "{q} {noun} बढी छ?"
+  question_less: "{q} {noun} कम छ?"
+  question_max: "{q} {noun} {all} बढी छ?"
+  question_min: "{q} {noun} {all} कम छ?"
+  question_equal: "के {both} {noun} बराबर छ?"
+  answer_yes: "हो"
+  answer_no: "होइन"
+
+# `transitive_4` appears only in the test split: a relation pattern the model
+# never sees in training, so accuracy on it separates learned inequality
+# chaining from memorised three-term surface forms.
+templates:
+  - id: two_way_value
+    description: "two entities with stated values, ask which is more or less"
+    train: 6000
+    val: 400
+    test: 800
+  - id: three_way_value
+    description: "three entities with stated values, ask for the maximum or minimum"
+    train: 6000
+    val: 400
+    test: 800
+  - id: transitive_3
+    description: "two chained inequalities over three entities, no numbers given"
+    train: 6000
+    val: 400
+    test: 800
+  - id: equality
+    description: "two entities, equal or unequal values, answer yes or no"
+    train: 4000
+    val: 300
+    test: 600
+  - id: transitive_4
+    description: "three chained inequalities over four entities; held out of training"
+    train: 0
+    val: 0
+    test: 600
+
+seed: 20260909

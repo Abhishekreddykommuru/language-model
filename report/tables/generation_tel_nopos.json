@@ -1,0 +1,59 @@
+{
+  "lang": "tel",
+  "run": "tel_nopos",
+  "step": 6000,
+  "settings": {
+    "greedy": {
+      "temperature": 0.0,
+      "bleu": NaN,
+      "chrf_pp": NaN,
+      "note": "sacrebleu not installed",
+      "rouge_l_precision": 0.04752324307082798,
+      "rouge_l_recall": 0.044012544496412814,
+      "rouge_l_f": 0.04434018661290901,
+      "distinct_1": 0.18377216550241807,
+      "distinct_2": 0.26527958387516254,
+      "repetition_4gram": 0.6777555110220441,
+      "mean_words": 27.915
+    },
+    "t0.5": {
+      "temperature": 0.5,
+      "bleu": NaN,
+      "chrf_pp": NaN,
+      "note": "sacrebleu not installed",
+      "rouge_l_precision": 0.054822794903980426,
+      "rouge_l_recall": 0.05106086614309811,
+      "rouge_l_f": 0.05187339487809404,
+      "distinct_1": 0.3583845478489903,
+      "distinct_2": 0.6203821656050955,
+      "repetition_4gram": 0.21243624950961162,
+      "mean_words": 28.475
+    },
+    "t1.0": {
+      "temperature": 1.0,
+      "bleu": NaN,
+      "chrf_pp": NaN,
+      "note": "sacrebleu not installed",
+      "rouge_l_precision": 0.0356310281226832,
+      "rouge_l_recall": 0.03646901419311314,
+      "rouge_l_f": 0.03585222144318917,
+      "distinct_1": 0.697094125078964,
+      "distinct_2": 0.9867906066536204,
+      "repetition_4gram": 0.0,
+      "mean_words": 31.66
+    },
+    "t1.5": {
+      "temperature": 1.5,
+      "bleu": NaN,
+      "chrf_pp": NaN,
+      "note": "sacrebleu not installed",
+      "rouge_l_precision": 0.01383591172106781,
+      "rouge_l_recall": 0.016715999472213337,
+      "rouge_l_f": 0.01530114115708981,
+      "distinct_1": 0.7299617060610062,
+      "distinct_2": 0.998643699986437,
+      "repetition_4gram": 0.0,
+      "mean_words": 37.865
+    }
+  }
+}

@@ -1,0 +1,46 @@
+# Bulk data lives on Google Drive, never in git.
+work/
+scratch/
+*/data/
+*.jsonl.zst
+*.bin
+*.idx
+*.parquet
+*.tar
+raw_html/
+models/glotlid.bin
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+
+# OS
+.DS_Store
+
+# But DO commit these named Phase 1 deliverables (they are ~1 MB):
+!telugu/tokenizer/*.model
+!telugu/tokenizer/*.vocab.txt
+!telugu/tokenizer/*.json
+!nepali/tokenizer/*.model
+!nepali/tokenizer/*.vocab.txt
+!nepali/tokenizer/*.json
+
+# Model checkpoints and archives (kept on Drive, far too large for git)
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.zip
+*.tar.gz
+*.tgz
+*.gz
+!*/splits/*.tsv.gz
+
+# Editor and OS
+.vscode/
+.idea/
+*.swp
+*~
+.cache/

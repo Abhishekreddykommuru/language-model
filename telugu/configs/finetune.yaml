@@ -1,0 +1,40 @@
+# Reasoning finetuning, Telugu (Model H).
+#
+# Starts from the Telugu pretrained checkpoint and touches nothing else: same
+# tokenizer, same vocabulary, same architecture, same weights as the starting
+# point. Only the optimisation settings below differ from pretraining.
+
+finetune:
+  # Which pretrained checkpoint to start from: `best` is the lowest validation
+  # loss reached during pretraining.
+  init_from: best
+  # Loss on the answer tokens only. The prompt is given, not predicted, and
+  # scoring it lets the model lower the loss by getting fluent at restating the
+  # question instead of answering it.
+  answer_only: true
+  # Regularisation is dropped from the pretraining value: the finetuning set is
+  # 22,000 short examples seen many times, and dropout at 0.1 slows the format
+  # from being learned without buying generalisation the disjoint entity pools
+  # do not already provide.
+  dropout: 0.05
+
+train:
+  batch_size: 32
+  grad_accum_steps: 2       # effective batch 64 examples
+  max_steps: 1500           # about 4.4 passes over 22,000 examples
+  # An order of magnitude below pretraining's 3e-4. The model already speaks
+  # Telugu; the job here is to attach an output format and a comparison rule to
+  # representations that exist, and the pretraining rate erases them.
+  learning_rate: 0.00003
+  min_learning_rate: 0.000003
+  warmup_steps: 100
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  eval_every: 100
+  eval_batches: 50          # the whole 1,500-example validation split
+  checkpoint_every: 300
+  log_every: 25
+  seed: 1337
+  precision: auto

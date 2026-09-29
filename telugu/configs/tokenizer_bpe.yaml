@@ -1,0 +1,50 @@
+# BPE hyperparameters -- telugu (tel)
+#
+# BPE's real hyperparameter is the NUMBER OF MERGES, not the vocabulary size:
+#
+#     vocab_size = alphabet_size + num_special_tokens + num_merges
+#
+# so num_merges is derived from the requested vocab_size and both are recorded in
+# the saved model. The ordered merge list IS the tokenizer; the vocabulary is a
+# by-product of replaying it.
+algorithm: bpe
+
+hyperparameters:
+  # num_merges = vocab_size - alphabet_size - num_special_tokens
+  #
+  # alphabet_size is MEASURED on our own normalised corpus: the number of
+  # distinct characters needed to cover 99.95% of text (character_coverage).
+  #     telugu: 167 characters
+  # num_special_tokens = 4 control (<unk> <s> </s> <pad>) + 5 user-defined = 9
+  #
+  #     vocab_size   alphabet   specials    num_merges
+  #      8,000    167          9          7,824
+  #     12,000    167          9         11,824
+  #     16,000    167          9         15,824
+  #     24,000    167          9         23,824
+  #     32,000    167          9         31,824
+  #
+  # The value actually used is recomputed at train time from the real corpus and
+  # written into the model file, so the number reported is never a guess.
+  num_merges_by_vocab_size:
+    8000: 7824
+    12000: 11824
+    16000: 15824
+    24000: 23824
+    32000: 31824
+  alphabet_size_measured: 167
+  num_special_tokens: 9
+
+  max_piece_length: 16      # longest learnable piece, in Unicode characters
+  min_pair_frequency: 2     # stop merging pairs seen only once
+
+  # SentencePiece equivalents used by the library engine
+  character_coverage: 0.9995
+  byte_fallback: true       # guarantees zero true UNK
+  split_digits: true
+
+notes: |
+  BPE merges the most FREQUENT adjacent pair at each step. It is the easiest of
+  the three to explain and the fastest to train, but its greedy frequency rule
+  produces less morphologically meaningful pieces than Unigram on agglutinative
+  languages.

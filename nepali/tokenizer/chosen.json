@@ -1,0 +1,143 @@
+{
+  "chosen": {
+    "vocab_size": 32000,
+    "n_tokens": 2686659,
+    "chars_per_token": 4.919573343695646,
+    "bytes_per_token": 13.090666884037015,
+    "tokens_per_word": 1.3102745488196523,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.0030212245022535424,
+    "vocab_used_frac": 0.98525,
+    "dead_vocab_frac": 0.01475000000000004,
+    "algorithm": "unigram",
+    "phase2": {
+      "embedding": 12288000,
+      "transformer": 10616832,
+      "total": 22904832,
+      "embedding_share": 0.5364806866952789
+    }
+  },
+  "model": "/content/drive/MyDrive/lma_phase1/nepali/tokenizer/nep.model",
+  "final_metrics": {
+    "vocab_size": 32000,
+    "n_tokens": 2686659,
+    "chars_per_token": 4.919573343695646,
+    "bytes_per_token": 13.090666884037015,
+    "tokens_per_word": 1.3102745488196523,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.0030212245022535424,
+    "vocab_used_frac": 0.98525,
+    "dead_vocab_frac": 0.01475000000000004
+  },
+  "examples": [
+    {
+      "word": "सरकार",
+      "pieces": [
+        "▁सरकार"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "विद्यार्थी",
+      "pieces": [
+        "▁विद्यार्थी"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "काठमाडौं",
+      "pieces": [
+        "▁काठमाडौं"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "गरिरहेका",
+      "pieces": [
+        "▁गरिरहेका"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "कम्प्युटर",
+      "pieces": [
+        "▁कम्प्युटर"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "2026",
+      "pieces": [
+        "▁",
+        "2",
+        "0",
+        "2",
+        "6"
+      ],
+      "n_pieces": 5
+    },
+    {
+      "word": "नेपाली",
+      "pieces": [
+        "▁नेपाली"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "पुस्तकहरू",
+      "pieces": [
+        "▁पुस्तकहरू"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "विकास",
+      "pieces": [
+        "▁विकास"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "उनीहरू",
+      "pieces": [
+        "▁उनीहरू"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "चलचित्र",
+      "pieces": [
+        "▁चलचित्र"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "राज्यको",
+      "pieces": [
+        "▁राज्यको"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "वैज्ञानिकहरू",
+      "pieces": [
+        "▁वैज्ञानिकहरू"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "राम्रो",
+      "pieces": [
+        "▁राम्रो"
+      ],
+      "n_pieces": 1
+    },
+    {
+      "word": "अन्तर्राष्ट्रिय",
+      "pieces": [
+        "▁अन्तर्राष्ट्रिय"
+      ],
+      "n_pieces": 1
+    }
+  ]
+}

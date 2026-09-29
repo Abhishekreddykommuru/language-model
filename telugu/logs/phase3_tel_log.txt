@@ -1,0 +1,303 @@
+
+Phase 3
+-------
+  languages                  tel
+  stages                     30, 31, 32, 33
+  bonus ablation             not requested
+
+30  generate the reasoning dataset  [tel]
+-----------------------------------------
+
+$ /usr/bin/python3 scripts/30_make_reasoning.py --lang tel --work /kaggle/working/lma_phase1
+
+Reasoning dataset, tel
+----------------------
+  config                     telugu/configs/reasoning.yaml
+  seed                       20260909
+  output                     /kaggle/working/lma_phase1/telugu/9_reasoning
+
+  split  examples  families  entities  mean chars
+  -----  --------  --------  --------  ----------
+  train     22000         4        34         104
+  val        1500         4         8         107
+  test       3600         5        12         112
+
+per-family counts
+  family           train  val  test
+  ---------------  -----  ---  ----
+  equality          4000  300   600
+  three_way_value   6000  400   800
+  transitive_3      6000  400   800
+  transitive_4         0    0   600
+  two_way_value     6000  400   800
+
+leakage checks
+  shared entities, train_val none
+  shared entities, train_test none
+  shared entities, val_test  none
+  repeated prompts, train_val none
+  repeated prompts, train_test none
+  repeated prompts, val_test none
+  families held out of training transitive_4
+
+majority-answer baseline, test split
+  always answer the most common string 9.1%
+
+sample, one per family
+
+  [equality]  hops=1  attribute=price
+  అద్దం ధర 1450 రూపాయలు. బుట్ట ధర 340 రూపాయలు. రెండింటి ధర సమానమేనా? సమాధానం: కాదు.
+
+  [three_way_value]  hops=2  attribute=weight
+  చంద్ర బరువు 59 కిలోలు. భాస్కర్ బరువు 75 కిలోలు. రేఖ బరువు 53 కిలోలు. ఎవరి బరువు అందరికంటే తక్కువ? సమాధానం: రేఖ.
+
+  [transitive_3]  hops=2  attribute=age
+  తేజ వయస్సు రేఖ వయస్సు కంటే ఎక్కువ. భాస్కర్ వయస్సు తేజ వయస్సు కంటే ఎక్కువ. ఎవరి వయస్సు అందరికంటే తక్కువ? సమాధానం: రేఖ.
+
+  [transitive_4]  hops=3  attribute=height
+  యమున ఎత్తు అశోక్ ఎత్తు కంటే ఎక్కువ. తేజ ఎత్తు నందిని ఎత్తు కంటే ఎక్కువ. నందిని ఎత్తు యమున ఎత్తు కంటే ఎక్కువ. ఎవరి ఎత్తు అందరికంటే ఎక్కువ? సమాధానం: తేజ.
+
+  [two_way_value]  hops=1  attribute=weight
+  భాస్కర్ బరువు 83 కిలోలు. చంద్ర బరువు 95 కిలోలు. ఎవరి బరువు ఎక్కువ? సమాధానం: చంద్ర.
+
+  dataset card               report/tables/reasoning_dataset_tel.json
+  finished in 0.0 min
+
+31  finetune from the pretrained checkpoint  [tel]
+--------------------------------------------------
+
+$ /usr/bin/python3 scripts/31_finetune.py --lang tel --work /kaggle/working/lma_phase1
+
+Reasoning finetuning, tel
+-------------------------
+  starting from              tel_best.pt, step 20,700
+  device                     cuda (Tesla T4)
+  precision                  bfloat16
+  parameters                 24,562,944
+  vocabulary                 8,000 pieces, unchanged
+  dropout                    0.05
+  training examples          22,000
+  validation examples        1,500
+  mean example length        31.4 tokens
+  loss computed on           answer tokens only
+  learning rate              3e-05 to 3e-06
+  steps                      1,500
+  examples per step          64
+  passes over the training set 4.4
+  resumed                    no, fresh start
+  step     25/1500  loss 1.0806  lr 7.50e-06  grad 9.68  0.1M tokens  0.1 min
+  step     50/1500  loss 0.5148  lr 1.50e-05  grad 6.93  0.1M tokens  0.2 min
+  step     75/1500  loss 0.4524  lr 2.25e-05  grad 5.18  0.2M tokens  0.3 min
+  step    100/1500  loss 0.3875  lr 3.00e-05  grad 5.16  0.2M tokens  0.4 min
+  step    100  val loss 0.6334  val ppl 1.88
+         new best, checkpoint written
+  step    125/1500  loss 0.3138  lr 3.00e-05  grad 4.95  0.3M tokens  0.5 min
+  step    150/1500  loss 0.2829  lr 2.99e-05  grad 4.71  0.3M tokens  0.6 min
+  step    175/1500  loss 0.2057  lr 2.98e-05  grad 3.15  0.4M tokens  0.6 min
+  step    200/1500  loss 0.2345  lr 2.97e-05  grad 2.50  0.4M tokens  0.7 min
+  step    200  val loss 0.6337  val ppl 1.88
+  step    225/1500  loss 0.2080  lr 2.95e-05  grad 2.32  0.5M tokens  0.9 min
+  step    250/1500  loss 0.2579  lr 2.93e-05  grad 3.16  0.5M tokens  0.9 min
+  step    275/1500  loss 0.2306  lr 2.90e-05  grad 2.48  0.6M tokens  1.0 min
+  step    300/1500  loss 0.2730  lr 2.87e-05  grad 2.96  0.6M tokens  1.1 min
+  step    300  val loss 0.7651  val ppl 2.15
+  step    325/1500  loss 0.2561  lr 2.83e-05  grad 2.62  0.7M tokens  1.3 min
+  step    350/1500  loss 0.2501  lr 2.79e-05  grad 2.18  0.7M tokens  1.3 min
+  step    375/1500  loss 0.1964  lr 2.75e-05  grad 2.13  0.8M tokens  1.4 min
+  step    400/1500  loss 0.2121  lr 2.71e-05  grad 1.91  0.8M tokens  1.5 min
+  step    400  val loss 0.9087  val ppl 2.48
+  step    425/1500  loss 0.2540  lr 2.66e-05  grad 2.31  0.9M tokens  1.7 min
+  step    450/1500  loss 0.2216  lr 2.61e-05  grad 1.89  0.9M tokens  1.7 min
+  step    475/1500  loss 0.2097  lr 2.55e-05  grad 1.92  1.0M tokens  1.8 min
+  step    500/1500  loss 0.2535  lr 2.49e-05  grad 2.59  1.0M tokens  1.9 min
+  step    500  val loss 0.9733  val ppl 2.65
+  step    525/1500  loss 0.2491  lr 2.43e-05  grad 2.53  1.1M tokens  2.1 min
+  step    550/1500  loss 0.2251  lr 2.37e-05  grad 2.39  1.1M tokens  2.1 min
+  step    575/1500  loss 0.2201  lr 2.31e-05  grad 1.80  1.2M tokens  2.2 min
+  step    600/1500  loss 0.2122  lr 2.24e-05  grad 1.79  1.2M tokens  2.3 min
+  step    600  val loss 1.0856  val ppl 2.96
+  step    625/1500  loss 0.1888  lr 2.17e-05  grad 1.48  1.3M tokens  2.5 min
+  step    650/1500  loss 0.2402  lr 2.10e-05  grad 2.10  1.3M tokens  2.6 min
+  step    675/1500  loss 0.2562  lr 2.03e-05  grad 2.18  1.4M tokens  2.6 min
+  step    700/1500  loss 0.1927  lr 1.95e-05  grad 1.70  1.4M tokens  2.7 min
+  step    700  val loss 1.0903  val ppl 2.98
+  step    725/1500  loss 0.2014  lr 1.88e-05  grad 1.83  1.5M tokens  2.9 min
+  step    750/1500  loss 0.1937  lr 1.80e-05  grad 1.51  1.5M tokens  2.9 min
+  step    775/1500  loss 0.2297  lr 1.73e-05  grad 1.80  1.6M tokens  3.0 min
+  step    800/1500  loss 0.2222  lr 1.65e-05  grad 1.95  1.6M tokens  3.1 min
+  step    800  val loss 1.1853  val ppl 3.27
+  step    825/1500  loss 0.1696  lr 1.58e-05  grad 1.75  1.7M tokens  3.3 min
+  step    850/1500  loss 0.2254  lr 1.50e-05  grad 2.87  1.7M tokens  3.3 min
+  step    875/1500  loss 0.1787  lr 1.43e-05  grad 1.56  1.8M tokens  3.4 min
+  step    900/1500  loss 0.1574  lr 1.35e-05  grad 1.81  1.8M tokens  3.5 min
+  step    900  val loss 1.1211  val ppl 3.07
+  step    925/1500  loss 0.1890  lr 1.28e-05  grad 2.96  1.9M tokens  3.7 min
+  step    950/1500  loss 0.1614  lr 1.21e-05  grad 1.66  1.9M tokens  3.8 min
+  step    975/1500  loss 0.1488  lr 1.14e-05  grad 3.03  2.0M tokens  3.8 min
+  step   1000/1500  loss 0.1944  lr 1.07e-05  grad 1.95  2.0M tokens  3.9 min
+  step   1000  val loss 1.1318  val ppl 3.10
+  step   1025/1500  loss 0.1904  lr 1.00e-05  grad 2.07  2.1M tokens  4.1 min
+  step   1050/1500  loss 0.1683  lr 9.34e-06  grad 1.93  2.1M tokens  4.1 min
+  step   1075/1500  loss 0.1587  lr 8.71e-06  grad 2.08  2.2M tokens  4.2 min
+  step   1100/1500  loss 0.1675  lr 8.11e-06  grad 3.97  2.2M tokens  4.3 min
+  step   1100  val loss 1.1302  val ppl 3.10
+  step   1125/1500  loss 0.1541  lr 7.53e-06  grad 1.95  2.3M tokens  4.4 min
+  step   1150/1500  loss 0.1804  lr 6.98e-06  grad 2.32  2.3M tokens  4.5 min
+  step   1175/1500  loss 0.1288  lr 6.45e-06  grad 2.12  2.4M tokens  4.6 min
+  step   1200/1500  loss 0.1610  lr 5.96e-06  grad 2.22  2.4M tokens  4.7 min
+  step   1200  val loss 1.0958  val ppl 2.99
+  step   1225/1500  loss 0.1719  lr 5.51e-06  grad 2.94  2.5M tokens  4.9 min
+  step   1250/1500  loss 0.1716  lr 5.09e-06  grad 1.99  2.5M tokens  4.9 min
+  step   1275/1500  loss 0.1326  lr 4.70e-06  grad 2.24  2.6M tokens  5.0 min
+  step   1300/1500  loss 0.1393  lr 4.35e-06  grad 2.08  2.6M tokens  5.1 min
+  step   1300  val loss 1.1156  val ppl 3.05
+  step   1325/1500  loss 0.1496  lr 4.04e-06  grad 2.20  2.7M tokens  5.2 min
+  step   1350/1500  loss 0.1525  lr 3.77e-06  grad 2.25  2.7M tokens  5.3 min
+  step   1375/1500  loss 0.1638  lr 3.54e-06  grad 2.19  2.8M tokens  5.4 min
+  step   1400/1500  loss 0.1311  lr 3.35e-06  grad 2.11  2.8M tokens  5.5 min
+  step   1400  val loss 1.0799  val ppl 2.94
+  step   1425/1500  loss 0.1423  lr 3.20e-06  grad 1.84  2.9M tokens  5.6 min
+  step   1450/1500  loss 0.1268  lr 3.09e-06  grad 30.38  2.9M tokens  5.7 min
+  step   1475/1500  loss 0.1243  lr 3.02e-06  grad 2.14  3.0M tokens  5.8 min
+  step   1500/1500  loss 0.1279  lr 3.00e-06  grad 1.96  3.0M tokens  5.9 min
+  step   1500  val loss 1.0896  val ppl 2.97
+
+Finetuning finished, tel
+------------------------
+  wall clock                 6.0 min
+  steps completed            1,500
+  best validation loss       0.6334
+  first validation loss      0.6334
+  checkpoints written        tel_ft_best.pt, tel_ft_last.pt
+  log                        report/tables/finetune_tel.json
+  finished in 6.1 min
+
+32  pretrained against finetuned accuracy  [tel]
+------------------------------------------------
+
+$ /usr/bin/python3 scripts/32_eval_reasoning.py --lang tel --work /kaggle/working/lma_phase1
+
+Reasoning evaluation, tel
+-------------------------
+  split                      test, 3,600 examples
+  random choice              38.4%
+  best constant answer       9.1%
+  always the first entity named 26.9%
+  pretrained: generation 0.0%, choice 35.6%
+  finetuned: generation 40.0%, choice 41.8%
+
+exact match, greedy generation
+  family              n  pretrained  finetuned  change
+  ---------------  ----  ----------  ---------  ------
+  equality          600        0.0%      54.3%  +54.3%
+  three_way_value   800        0.0%      34.2%  +34.2%
+  transitive_3      800        0.0%      34.9%  +34.9%
+  transitive_4      600        0.0%      26.7%  +26.7%
+  two_way_value     800        0.0%      50.1%  +50.1%
+  all              3600        0.0%      40.0%  +40.0%
+
+likelihood-ranked choice, same examples
+  family           pretrained  finetuned
+  ---------------  ----------  ---------
+  equality              45.7%      54.3%
+  three_way_value       32.9%      34.4%
+  transitive_3          28.2%      40.8%
+  transitive_4          17.0%      28.7%
+  two_way_value         52.1%      50.5%
+
+by number of statements that must be combined
+  hops     n  pretrained  finetuned
+  ----  ----  ----------  ---------
+  1     1400        0.0%      51.9%
+  2     1600        0.0%      34.6%
+  3      600        0.0%      26.7%
+
+qualitative
+  fixed by finetuning        6
+  still wrong                6
+  broken by finetuning       0
+
+  a failure that survived finetuning [transitive_3]
+  prompt   : తేజ వయస్సు రేఖ వయస్సు కంటే ఎక్కువ. భాస్కర్ వయస్సు తేజ వయస్సు కంటే ఎక్కువ. ఎవరి వయస్సు అందరికంటే తక్కువ? సమాధానం:
+  gold     : రేఖ
+  finetuned: భాస్కర్
+
+  metrics                    report/tables/reasoning_tel.json
+  qualitative examples       report/tables/reasoning_samples_tel.json
+  accuracy plot              report/figures/reasoning_accuracy_tel.png
+  finished in 1.8 min
+
+33  attention before and after finetuning  [tel]
+------------------------------------------------
+
+$ /usr/bin/python3 scripts/33_attention_compare.py --lang tel --work /kaggle/working/lma_phase1
+
+Attention, pretrained against finetuned, tel
+--------------------------------------------
+  prompts                    16 of 24 tokens, from test
+  families in the batch      equality, transitive_3, two_way_value
+  pretrained, early layer    report/figures/reasoning_attention_early_tel_pretrained.png
+  pretrained, late layer     report/figures/reasoning_attention_late_tel_pretrained.png
+  finetuned, early layer     report/figures/reasoning_attention_early_tel_finetuned.png
+  finetuned, late layer      report/figures/reasoning_attention_late_tel_finetuned.png
+  maximum possible entropy   2.283 nats
+
+per-layer means, pretrained -> finetuned
+  layer  entropy  entropy change  distance  distance change
+  -----  -------  --------------  --------  ---------------
+  0        2.037          -0.001      5.44            -0.00
+  1        1.953          -0.001      6.47            +0.06
+  2        1.839          -0.041      5.80            -0.29
+  3        1.671          -0.202      3.63            -0.63
+  4        1.496          -0.104      3.98            -0.78
+  5        1.142          -0.072      4.16            -0.19
+  6        1.216          -0.035      6.18            +0.06
+  7        1.228          +0.029      7.18            -0.26
+  8        1.281          -0.060      7.06            -0.52
+  9        1.333          -0.016      7.16            -0.19
+  10       1.385          -0.023      6.97            -0.10
+  11       1.579          -0.115      7.18            +0.20
+
+heads whose entropy moved most
+  layer  head  entropy change  distance change
+  -----  ----  --------------  ---------------
+  3         3          -0.440            -0.60
+  11        3          -0.391            +1.42
+  3         2          -0.329            -0.60
+  3         1          -0.278            -0.42
+  4         3          -0.248            -0.51
+  11        2          -0.238            +0.29
+  8         3          -0.236            +0.27
+  7         2          +0.214            -1.17
+
+across all heads
+  mean entropy               1.513 -> 1.460 nats
+  mean attention distance    5.93 -> 5.71 positions
+  heads that sharpened       46 of 72
+  heads that became more local 50 of 72
+
+  comparison                 report/tables/attention_compare_tel.json
+  finished in 0.2 min
+
+35  assemble the final report
+-----------------------------
+
+$ /usr/bin/python3 scripts/35_final_report.py --work /kaggle/working/lma_phase1
+  ! no reasoning dataset for Nepali; that section will be empty
+  ! no finetuning log for Nepali; that section will be empty
+  ! no reasoning evaluation for Nepali; that section will be empty
+  ! no attention comparison for Nepali; that section will be empty
+
+Report
+------
+  written                    report/final_report.md
+  lines                      100
+  config copied              telugu/configs/finetune_trained.yaml
+  finished in 0.0 min
+
+Phase 3 finished
+----------------
+  status                     all stages completed
+
+  Left to write by hand: the discussion in report/final_report.md,
+  and the Drive links for the finetuned checkpoints in README.md.

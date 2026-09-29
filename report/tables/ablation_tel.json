@@ -1,0 +1,295 @@
+{
+  "lang": "tel",
+  "standard": {
+    "parameters": 24562944,
+    "step": 20700,
+    "lm": {
+      "val": {
+        "cross_entropy_nats": 3.175279890866759,
+        "perplexity": 23.933517704014672,
+        "bits_per_byte": 0.457923517776439,
+        "tokens_scored": 9318912,
+        "bytes_of_text": 93224232
+      },
+      "test": {
+        "cross_entropy_nats": 3.1843342201909604,
+        "perplexity": 24.151203668226163,
+        "bits_per_byte": 0.45878393285849817,
+        "tokens_scored": 9540608,
+        "bytes_of_text": 95534676
+      }
+    },
+    "generation": {
+      "greedy": {
+        "temperature": 0.0,
+        "bleu": 2.073072608721235,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 2.07 12.0/2.7/1.1/0.6 (BP = 0.970 ratio = 0.971 hyp_len = 7201 ref_len = 7419)",
+        "chrf_pp": 12.615939539207796,
+        "rouge_l_precision": 0.053056179285787854,
+        "rouge_l_recall": 0.048695145109124906,
+        "rouge_l_f": 0.0495647607581521,
+        "distinct_1": 0.20802271920482784,
+        "distinct_2": 0.3060360691939639,
+        "repetition_4gram": 0.6282992657273269,
+        "mean_words": 28.17
+      },
+      "t0.5": {
+        "temperature": 0.5,
+        "bleu": 2.5089079794858082,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 2.51 14.7/3.1/1.3/0.8 (BP = 0.968 ratio = 0.968 hyp_len = 7182 ref_len = 7419)",
+        "chrf_pp": 15.405202401440684,
+        "rouge_l_precision": 0.05978023152271482,
+        "rouge_l_recall": 0.05547712990071469,
+        "rouge_l_f": 0.05641182920462305,
+        "distinct_1": 0.3956615274291861,
+        "distinct_2": 0.6517292673856452,
+        "repetition_4gram": 0.21465863453815262,
+        "mean_words": 27.89
+      },
+      "t1.0": {
+        "temperature": 1.0,
+        "bleu": 1.8837812175959194,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 1.88 13.6/2.0/0.8/0.6 (BP = 0.994 ratio = 0.994 hyp_len = 7374 ref_len = 7419)",
+        "chrf_pp": 18.22574599817172,
+        "rouge_l_precision": 0.040488154357980755,
+        "rouge_l_recall": 0.04063574058383335,
+        "rouge_l_f": 0.04027989455690638,
+        "distinct_1": 0.7132448186528497,
+        "distinct_2": 0.9874497991967871,
+        "repetition_4gram": 0.0001793400286944046,
+        "mean_words": 30.88
+      },
+      "t1.5": {
+        "temperature": 1.5,
+        "bleu": 0.9761797233329054,
+        "bleu_order": 4,
+        "bleu_signature": "BLEU = 0.98 7.3/0.8/0.5/0.3 (BP = 1.000 ratio = 1.057 hyp_len = 7845 ref_len = 7419)",
+        "chrf_pp": 16.929449617463753,
+        "rouge_l_precision": 0.015529406015251618,
+        "rouge_l_recall": 0.016697894762134922,
+        "rouge_l_f": 0.01610511469981295,
+        "distinct_1": 0.7589435438792621,
+        "distinct_2": 0.9987061529614721,
+        "repetition_4gram": 0.0,
+        "mean_words": 35.78
+      }
+    },
+    "attention": {
+      "entropy": 1.854690632265475,
+      "distance": 11.033371791243553,
+      "layer_means": [
+        {
+          "layer": 0,
+          "entropy": 2.6568427085876465,
+          "mean_distance": 10.54470936457316
+        },
+        {
+          "layer": 1,
+          "entropy": 2.571144700050354,
+          "mean_distance": 12.29145367940267
+        },
+        {
+          "layer": 2,
+          "entropy": 2.3184057076772056,
+          "mean_distance": 10.109537124633789
+        },
+        {
+          "layer": 3,
+          "entropy": 1.9576603174209595,
+          "mean_distance": 4.823116262753804
+        },
+        {
+          "layer": 4,
+          "entropy": 1.754681924978892,
+          "mean_distance": 5.365640918413798
+        },
+        {
+          "layer": 5,
+          "entropy": 1.40420313924551,
+          "mean_distance": 6.299061755339305
+        },
+        {
+          "layer": 6,
+          "entropy": 1.4576370120048523,
+          "mean_distance": 11.757854143778482
+        },
+        {
+          "layer": 7,
+          "entropy": 1.4748029013474782,
+          "mean_distance": 13.967855294545492
+        },
+        {
+          "layer": 8,
+          "entropy": 1.5438626408576965,
+          "mean_distance": 13.720850865046183
+        },
+        {
+          "layer": 9,
+          "entropy": 1.619916021823883,
+          "mean_distance": 13.82320261001587
+        },
+        {
+          "layer": 10,
+          "entropy": 1.5005794763565063,
+          "mean_distance": 16.01393969853719
+        },
+        {
+          "layer": 11,
+          "entropy": 1.9965510368347168,
+          "mean_distance": 13.683239777882894
+        }
+      ]
+    }
+  },
+  "ablated": {
+    "parameters": 24366336,
+    "step": 6000,
+    "lm": {
+      "val": {
+        "cross_entropy_nats": 3.5267861104523712,
+        "perplexity": 34.014472997964155,
+        "bits_per_byte": 0.5086160457189135,
+        "tokens_scored": 9318912,
+        "bytes_of_text": 93224232
+      },
+      "test": {
+        "cross_entropy_nats": 3.536060975513272,
+        "perplexity": 34.33142019431436,
+        "bits_per_byte": 0.5094590733871365,
+        "tokens_scored": 9540608,
+        "bytes_of_text": 95534676
+      }
+    },
+    "generation": {
+      "greedy": {
+        "temperature": 0.0,
+        "bleu": NaN,
+        "chrf_pp": NaN,
+        "note": "sacrebleu not installed",
+        "rouge_l_precision": 0.04752324307082798,
+        "rouge_l_recall": 0.044012544496412814,
+        "rouge_l_f": 0.04434018661290901,
+        "distinct_1": 0.18377216550241807,
+        "distinct_2": 0.26527958387516254,
+        "repetition_4gram": 0.6777555110220441,
+        "mean_words": 27.915
+      },
+      "t0.5": {
+        "temperature": 0.5,
+        "bleu": NaN,
+        "chrf_pp": NaN,
+        "note": "sacrebleu not installed",
+        "rouge_l_precision": 0.054822794903980426,
+        "rouge_l_recall": 0.05106086614309811,
+        "rouge_l_f": 0.05187339487809404,
+        "distinct_1": 0.3583845478489903,
+        "distinct_2": 0.6203821656050955,
+        "repetition_4gram": 0.21243624950961162,
+        "mean_words": 28.475
+      },
+      "t1.0": {
+        "temperature": 1.0,
+        "bleu": NaN,
+        "chrf_pp": NaN,
+        "note": "sacrebleu not installed",
+        "rouge_l_precision": 0.0356310281226832,
+        "rouge_l_recall": 0.03646901419311314,
+        "rouge_l_f": 0.03585222144318917,
+        "distinct_1": 0.697094125078964,
+        "distinct_2": 0.9867906066536204,
+        "repetition_4gram": 0.0,
+        "mean_words": 31.66
+      },
+      "t1.5": {
+        "temperature": 1.5,
+        "bleu": NaN,
+        "chrf_pp": NaN,
+        "note": "sacrebleu not installed",
+        "rouge_l_precision": 0.01383591172106781,
+        "rouge_l_recall": 0.016715999472213337,
+        "rouge_l_f": 0.01530114115708981,
+        "distinct_1": 0.7299617060610062,
+        "distinct_2": 0.998643699986437,
+        "repetition_4gram": 0.0,
+        "mean_words": 37.865
+      }
+    },
+    "attention": {
+      "entropy": 2.221593227237463,
+      "distance": 9.108769299255478,
+      "layer_means": [
+        {
+          "layer": 0,
+          "entropy": 2.253734747568766,
+          "mean_distance": 8.80308198928833
+        },
+        {
+          "layer": 1,
+          "entropy": 2.686348477999369,
+          "mean_distance": 11.067907810211182
+        },
+        {
+          "layer": 2,
+          "entropy": 2.644948681195577,
+          "mean_distance": 10.833785057067871
+        },
+        {
+          "layer": 3,
+          "entropy": 2.597294330596924,
+          "mean_distance": 9.971000591913858
+        },
+        {
+          "layer": 4,
+          "entropy": 2.2621543804804483,
+          "mean_distance": 4.968772927920024
+        },
+        {
+          "layer": 5,
+          "entropy": 1.8598226308822632,
+          "mean_distance": 4.194423278172811
+        },
+        {
+          "layer": 6,
+          "entropy": 1.62901275853316,
+          "mean_distance": 4.812836031119029
+        },
+        {
+          "layer": 7,
+          "entropy": 1.909295638402303,
+          "mean_distance": 7.353676517804463
+        },
+        {
+          "layer": 8,
+          "entropy": 2.2040109038352966,
+          "mean_distance": 10.765984137852987
+        },
+        {
+          "layer": 9,
+          "entropy": 1.9868884483973186,
+          "mean_distance": 12.763753732045492
+        },
+        {
+          "layer": 10,
+          "entropy": 2.2269925673802695,
+          "mean_distance": 12.094312826792398
+        },
+        {
+          "layer": 11,
+          "entropy": 2.3986151615778604,
+          "mean_distance": 11.67569669087728
+        }
+      ]
+    }
+  },
+  "matched_step_of_standard_run": {
+    "step": 6000,
+    "train_loss": 3.615067809820175,
+    "val_loss": 3.8392904663085936,
+    "val_ppl": 46.49247475674342,
+    "lr": 0.00025356620826430195,
+    "tokens": 393216000
+  }
+}

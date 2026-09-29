@@ -1,0 +1,62 @@
+{
+  "lang": "nep",
+  "step": 16000,
+  "settings": {
+    "greedy": {
+      "temperature": 0.0,
+      "bleu": 0.7707880536836944,
+      "bleu_order": 4,
+      "bleu_signature": "BLEU = 0.77 7.5/1.3/0.3/0.1 (BP = 0.969 ratio = 0.969 hyp_len = 10270 ref_len = 10598)",
+      "chrf_pp": 15.86718884352447,
+      "rouge_l_precision": 0.06288861348094245,
+      "rouge_l_recall": 0.062062943401571785,
+      "rouge_l_f": 0.062053513675578015,
+      "distinct_1": 0.11260238823645514,
+      "distinct_2": 0.18061008758683178,
+      "repetition_4gram": 0.3964124619741949,
+      "mean_words": 50.665
+    },
+    "t0.5": {
+      "temperature": 0.5,
+      "bleu": 1.0054735617476354,
+      "bleu_order": 4,
+      "bleu_signature": "BLEU = 1.01 9.7/1.8/0.5/0.1 (BP = 0.943 ratio = 0.945 hyp_len = 10015 ref_len = 10598)",
+      "chrf_pp": 17.828550356781765,
+      "rouge_l_precision": 0.07362931621417279,
+      "rouge_l_recall": 0.06961389023307848,
+      "rouge_l_f": 0.07074886599742332,
+      "distinct_1": 0.2995203592203286,
+      "distinct_2": 0.6179810396916345,
+      "repetition_4gram": 0.12271739130434782,
+      "mean_words": 48.995
+    },
+    "t1.0": {
+      "temperature": 1.0,
+      "bleu": 0.7191468388589559,
+      "bleu_order": 4,
+      "bleu_signature": "BLEU = 0.72 8.8/1.1/0.3/0.1 (BP = 0.997 ratio = 0.997 hyp_len = 10569 ref_len = 10598)",
+      "chrf_pp": 19.219397216482477,
+      "rouge_l_precision": 0.06207892976152552,
+      "rouge_l_recall": 0.06188688618186524,
+      "rouge_l_f": 0.061754389347306454,
+      "distinct_1": 0.5334552806392606,
+      "distinct_2": 0.9474820850103073,
+      "repetition_4gram": 0.0026565852661694085,
+      "mean_words": 51.935
+    },
+    "t1.5": {
+      "temperature": 1.5,
+      "bleu": 0.08189146991385168,
+      "bleu_order": 4,
+      "bleu_signature": "BLEU = 0.08 3.5/0.1/0.0/0.0 (BP = 1.000 ratio = 1.007 hyp_len = 10676 ref_len = 10598)",
+      "chrf_pp": 17.453967670584635,
+      "rouge_l_precision": 0.02771569940567026,
+      "rouge_l_recall": 0.028257876691747535,
+      "rouge_l_f": 0.027961717996238044,
+      "distinct_1": 0.6835096335474121,
+      "distinct_2": 0.9974008471313054,
+      "repetition_4gram": 0.0,
+      "mean_words": 52.94
+    }
+  }
+}

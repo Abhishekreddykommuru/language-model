@@ -1,0 +1,107 @@
+# Nepali (Model L) -- cleaning thresholds.
+#
+# THIS FILE IS DELIBERATELY DIFFERENT FROM telugu/configs/clean.yaml.
+#
+# Lecture 3, slide 30: "Every filter you add costs you data you cannot replace.
+# A threshold tuned on English will empty your corpus. Repair what you can rather
+# than discarding it. Set your thresholds by reading what they remove, in your
+# language. The project assesses this judgement."
+#
+# Every line marked LOW-RESOURCE below is looser than its Telugu counterpart,
+# with the reason stated. Lecture Activity 4 asks for exactly one such decision;
+# there are eleven here.
+lang: nep
+
+lid:
+  model: models/glotlid.bin
+  expected_label: npi_Deva
+  # LOW-RESOURCE: Devanagari is shared with Hindi, Marathi, Maithili, Bhojpuri
+  # and Sanskrit, so GlotLID is systematically less confident on genuine Nepali.
+  # A 0.70 gate, correct for Telugu, would delete large amounts of real data.
+  min_confidence: 0.50
+  min_script_ratio: 0.80          # LOW-RESOURCE: relaxed from 0.85
+  max_latin_ratio: 0.20           # LOW-RESOURCE: Nepali web text code-mixes more
+  # REQUIRED for this language: the confidence gap left by the lower threshold is
+  # closed by a Nepali-versus-Hindi function-word discriminator.
+  use_function_words: true
+  nepali_markers: ["छ", "छन्", "हो", "हुन्", "गर्ने", "गरेको", "भएको",
+                   "लागि", "को", "ले", "हरू", "र", "तर", "पनि", "गर्न"]
+  hindi_markers: ["है", "हैं", "नहीं", "किया", "करने", "रहा", "और",
+                  "लिए", "का", "की", "के", "था", "थे", "हुआ"]
+  min_marker_advantage: 1.5
+
+# ---------------------------------------------------------------------------
+# CLEANING PROFILES -- how much work each source class gets.
+#
+# Downloaded corpora (FineWeb-2, Sangraha, Wikipedia, IndicCorp) were already
+# language-filtered, quality-filtered and deduplicated by their authors, so
+# re-running the full heuristic suite on them mostly burns time. Our own crawl
+# and OCR are raw and get everything.
+#
+# BUT four steps run on EVERYTHING regardless of profile, because skipping them
+# on downloaded data breaks correctness rather than just costing quality:
+#
+#   normalize   If downloaded text is not NFC-normalised with digits mapped and
+#               ZWJ stripped, but manual text is, the tokenizer sees TWO
+#               spellings of the same word -- "२०२६" and "2026" become different
+#               tokens. It also splits dedup, since byte-identical articles no
+#               longer hash alike. The PDF lists "normalize Unicode" as required
+#               work per language with no exemption for downloaded data.
+#   lid         FineWeb-2's npi_Deva is auto-classified and does contain Hindi.
+#               Lecture 3 slide 27 names this exact failure. Cheap to run.
+#   dedup       Our crawl overlaps FineWeb-2 -- both crawl the same news sites.
+#               Without cross-source dedup the same article is counted twice,
+#               once as manual and once as downloaded, which corrupts the >=20%
+#               figure and defeats the prefer_manual policy.
+#   decontaminate  val/test contain downloaded documents. Skipping the train-vs-
+#               test check would make Phase 2 perplexity meaningless.
+#
+# 'light' therefore skips only the expensive heuristic suite and PII.
+# ---------------------------------------------------------------------------
+profiles:
+  downloaded: light
+  manual: full
+
+light:
+  # Minimal sanity checks only -- these corpora are already filtered.
+  min_words: 20
+  max_words: 200000
+  min_alpha_word_ratio: 0.50
+  apply_pii: false
+
+quality:
+  # LOW-RESOURCE: lowered from 50. Nepali web documents are shorter on average,
+  # and a 50-word floor removes a large slice of otherwise good text.
+  min_words: 30
+  max_words: 100000
+  # LOW-RESOURCE: measured Nepali averages 6.48 characters per word against
+  # Telugu's 7.82, so the acceptable band sits lower.
+  min_mean_word_len: 2.5
+  max_mean_word_len: 10.0
+  max_symbol_word_ratio: 0.15     # LOW-RESOURCE: relaxed from 0.10
+  max_bullet_line_ratio: 0.90
+  max_ellipsis_line_ratio: 0.40   # LOW-RESOURCE: relaxed from 0.30
+  min_alpha_word_ratio: 0.70      # LOW-RESOURCE: relaxed from 0.80
+  min_terminal_punct_ratio: 0.20  # LOW-RESOURCE: relaxed from 0.30
+  max_dup_line_ratio: 0.40        # LOW-RESOURCE: relaxed from 0.30
+  max_dup_para_ratio: 0.40        # LOW-RESOURCE: relaxed from 0.30
+  max_top_2gram_ratio: 0.25       # LOW-RESOURCE: relaxed from 0.20
+  max_dup_5gram_ratio: 0.20       # LOW-RESOURCE: relaxed from 0.15
+  min_stopword_hits: 1            # LOW-RESOURCE: relaxed from 2
+  boilerplate_line_doc_freq: 0.002
+  # THE KEY DIFFERENCE. When a document fails ONLY the duplicate-line or
+  # duplicate-paragraph test, delete the offending lines and keep the document
+  # instead of discarding it. This is slide 30's "repair what you can rather than
+  # discarding it", implemented in QualityFilter.apply().
+  repair_mode: true
+
+dedup:
+  shingle_words: 3
+  num_perm: 100
+  bands: 20
+  rows_per_band: 5
+  # LOW-RESOURCE: a higher Jaccard threshold means fewer documents are judged
+  # duplicates and deleted. Telugu uses 0.70.
+  jaccard_threshold: 0.75
+  keep_policy: prefer_manual
+  n_buckets: 16

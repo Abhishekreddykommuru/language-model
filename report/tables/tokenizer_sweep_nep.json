@@ -1,0 +1,20 @@
+[
+  {
+    "vocab_size": 32000,
+    "n_tokens": 2686659,
+    "chars_per_token": 4.919573343695646,
+    "bytes_per_token": 13.090666884037015,
+    "tokens_per_word": 1.3102745488196523,
+    "unk_rate": 0.0,
+    "byte_fallback_rate": 0.0030212245022535424,
+    "vocab_used_frac": 0.98525,
+    "dead_vocab_frac": 0.01475000000000004,
+    "algorithm": "unigram",
+    "phase2": {
+      "embedding": 12288000,
+      "transformer": 10616832,
+      "total": 22904832,
+      "embedding_share": 0.5364806866952789
+    }
+  }
+]

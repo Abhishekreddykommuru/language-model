@@ -1,0 +1,41 @@
+{
+  "train": {
+    "tokens": 523604,
+    "documents": 2955,
+    "bytes_of_text": 12133590,
+    "tokens_by_class": {
+      "downloaded": 418987,
+      "manual": 104617
+    },
+    "tokens_by_source": {
+      "fineweb2": 418987,
+      "x.com": 104617
+    }
+  },
+  "val": {
+    "tokens": 3435,
+    "documents": 19,
+    "bytes_of_text": 77480,
+    "tokens_by_class": {
+      "downloaded": 3250,
+      "manual": 185
+    },
+    "tokens_by_source": {
+      "fineweb2": 3250,
+      "x.com": 185
+    }
+  },
+  "test": {
+    "tokens": 4613,
+    "documents": 26,
+    "bytes_of_text": 107299,
+    "tokens_by_class": {
+      "downloaded": 3381,
+      "manual": 1232
+    },
+    "tokens_by_source": {
+      "fineweb2": 3381,
+      "x.com": 1232
+    }
+  }
+}

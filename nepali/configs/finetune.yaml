@@ -1,0 +1,30 @@
+# Reasoning finetuning, Nepali (Model L).
+#
+# Identical settings to telugu/configs/finetune.yaml. The two runs are kept
+# deliberately the same so that any difference in reasoning accuracy is a
+# difference between the pretrained models, not between their finetuning
+# recipes. Nothing is shared between the two runs: separate data, separate
+# tokenizer, separate weights.
+
+finetune:
+  init_from: best
+  answer_only: true
+  dropout: 0.05
+
+train:
+  batch_size: 32
+  grad_accum_steps: 2       # effective batch 64 examples
+  max_steps: 1500           # about 4.4 passes over 22,000 examples
+  learning_rate: 0.00003
+  min_learning_rate: 0.000003
+  warmup_steps: 100
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  eval_every: 100
+  eval_batches: 50          # the whole 1,500-example validation split
+  checkpoint_every: 300
+  log_every: 25
+  seed: 1337
+  precision: auto

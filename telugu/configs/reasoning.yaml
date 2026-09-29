@@ -1,0 +1,117 @@
+# Synthetic comparative-reasoning dataset, Telugu (Model H).
+#
+# Every string a generated example can contain is in this file, so the phrasing
+# can be reviewed and corrected without touching the generator. The generator
+# (common/reasoning/generate.py) only decides which entities, values and
+# template family to use, and computes the ground-truth answer.
+#
+# Phrasing note: the templates deliberately use noun phrases ("X's height is
+# more than Y's height") rather than adjectival predicates ("X is taller").
+# Telugu adjectival predicates inflect for gender, so a template like
+# "{a} పొడవుగా ఉన్నాడు" would need the generator to know each name's gender and
+# would produce ungrammatical text whenever it got that wrong. Noun-phrase
+# comparison sidesteps the problem entirely and still reads naturally.
+
+language: telugu
+lang_code: tel
+answer_marker: "సమాధానం:"
+sentence_end: "."
+
+# Entity pools are disjoint across splits, so no name a model saw in training
+# appears at evaluation. This is one of the two leakage controls; the other is
+# the held-out template family below.
+#
+# Each pool carries its own interrogative and quantifier words, because Telugu
+# distinguishes animate from inanimate in all three: ఎవరి / దేని for "whose",
+# అందరికంటే / అన్నిటికంటే for "than all", ఇద్దరి / రెండింటి for "of the two".
+entities:
+  people:
+    question_word: "ఎవరి"
+    all_word: "అందరికంటే"
+    both_word: "ఇద్దరి"
+    train: [రాము, సీత, రవి, గీత, కిరణ్, లత, అనిల్, ప్రియ, వినయ్, సునీత,
+            మోహన్, రాధ, సురేష్, కవిత, అర్జున్, దీప, హరీష్, స్వాతి,
+            నరేష్, పద్మ, గోపాల్, శైలజ, రమేష్, ఉమ, వెంకట్, భారతి]
+    val:   [శంకర్, మాధవి, ప్రసాద్, సరిత, ముఖేష్, వాణి]
+    test:  [అశోక్, నందిని, భాస్కర్, యమున, చంద్ర, రేఖ, తేజ, అనూష]
+  objects:
+    question_word: "దేని"
+    all_word: "అన్నిటికంటే"
+    both_word: "రెండింటి"
+    train: [పుస్తకం, కుర్చీ, బల్ల, గడియారం, సైకిల్, బ్యాగ్, దీపం, కప్పు]
+    val:   [గొడుగు, పెట్టె]
+    test:  [అద్దం, తువ్వాలు, బుట్ట, సీసా]
+
+# Each attribute is a comparable quantity with its own unit and value range.
+attributes:
+  - key: height
+    pool: people
+    noun: "ఎత్తు"
+    unit: "సెంటీమీటర్లు"
+    low: 140
+    high: 195
+  - key: age
+    pool: people
+    noun: "వయస్సు"
+    unit: "సంవత్సరాలు"
+    low: 5
+    high: 80
+  - key: weight
+    pool: people
+    noun: "బరువు"
+    unit: "కిలోలు"
+    low: 30
+    high: 95
+  - key: price
+    pool: objects
+    noun: "ధర"
+    unit: "రూపాయలు"
+    low: 20
+    high: 4000
+
+# Sentence patterns. {a} and {b} are entities, {v} a value, {noun} the attribute
+# noun, {unit} its unit, and {q} / {all} / {both} the pool's function words.
+patterns:
+  fact: "{a} {noun} {v} {unit}."
+  relation_more: "{a} {noun} {b} {noun} కంటే ఎక్కువ."
+  question_more: "{q} {noun} ఎక్కువ?"
+  question_less: "{q} {noun} తక్కువ?"
+  question_max: "{q} {noun} {all} ఎక్కువ?"
+  question_min: "{q} {noun} {all} తక్కువ?"
+  question_equal: "{both} {noun} సమానమేనా?"
+  answer_yes: "అవును"
+  answer_no: "కాదు"
+
+# Template families and how many examples of each to generate per split.
+# `transitive_4` is generated for the test split only: it is a relation pattern
+# the model never sees in training, so test accuracy on it measures whether the
+# model learned to chain inequalities or merely memorised three-term surface
+# forms. That is the second leakage control.
+templates:
+  - id: two_way_value
+    description: "two entities with stated values, ask which is more or less"
+    train: 6000
+    val: 400
+    test: 800
+  - id: three_way_value
+    description: "three entities with stated values, ask for the maximum or minimum"
+    train: 6000
+    val: 400
+    test: 800
+  - id: transitive_3
+    description: "two chained inequalities over three entities, no numbers given"
+    train: 6000
+    val: 400
+    test: 800
+  - id: equality
+    description: "two entities, equal or unequal values, answer yes or no"
+    train: 4000
+    val: 300
+    test: 600
+  - id: transitive_4
+    description: "three chained inequalities over four entities; held out of training"
+    train: 0
+    val: 0
+    test: 600
+
+seed: 20260909

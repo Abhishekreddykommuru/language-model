@@ -1,0 +1,33 @@
+{
+  "by_source": {
+    "fineweb2": {
+      "docs": 2363,
+      "chars": 3468956,
+      "bytes": 9702694
+    },
+    "x.com": {
+      "docs": 592,
+      "chars": 869104,
+      "bytes": 2430896
+    }
+  },
+  "by_class": {
+    "downloaded": {
+      "docs": 2363,
+      "chars": 3468956,
+      "bytes": 9702694
+    },
+    "manual": {
+      "docs": 592,
+      "chars": 869104,
+      "bytes": 2430896
+    }
+  },
+  "by_method": {
+    "hf_download": {
+      "docs": 2955,
+      "chars": 4338060,
+      "bytes": 12133590
+    }
+  }
+}
